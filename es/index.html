@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CubeFreight — Calculadoras Gratuitas de Cartón, Palet y Clase de Flete (3D)</title>
+  <meta name="description" content="Tres calculadoras de logística gratuitas en el navegador: dimensionamiento de cajas de cartón con troqueles RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC por densidad con vista previa de carga de camión. Sin registro.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://cubefreight.pages.dev/es/">
+  <link rel="alternate" hreflang="en" href="https://cubefreight.pages.dev/">
+  <link rel="alternate" hreflang="ko" href="https://cubefreight.pages.dev/ko/">
+  <link rel="alternate" hreflang="zh" href="https://cubefreight.pages.dev/zh/">
+  <link rel="alternate" hreflang="es" href="https://cubefreight.pages.dev/es/">
+  <link rel="alternate" hreflang="x-default" href="https://cubefreight.pages.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CubeFreight">
+  <meta property="og:title" content="CubeFreight — Calculadoras Gratuitas de Cartón, Palet y Clase de Flete (3D)">
+  <meta property="og:description" content="Tres calculadoras de logística gratuitas en el navegador: dimensionamiento de cajas de cartón con troqueles RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC por densidad con vista previa de carga de camión. Sin registro.">
+  <meta property="og:url" content="https://cubefreight.pages.dev/es/">
+  <meta property="og:image" content="https://cubefreight.pages.dev/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CubeFreight — Calculadoras Gratuitas de Cartón, Palet y Clase de Flete (3D)">
+  <meta name="twitter:description" content="Tres calculadoras de logística gratuitas en el navegador: dimensionamiento de cajas de cartón con troqueles RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC por densidad con vista previa de carga de camión. Sin registro.">
+  <meta name="twitter:image" content="https://cubefreight.pages.dev/og-image.png">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style id="cfGnbCss">
+    .cf-gnb { position: sticky; top: 0; z-index: 1000; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; }
+    .cf-gnb-inner { max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cf-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: #0F172A; }
+    .cf-brand svg { width: 27px; height: 27px; display: block; }
+    .cf-word { font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 17px; letter-spacing: -0.2px; }
+    .cf-word b { font-weight: 700; }
+    .cf-nav { display: flex; gap: 2px; flex: 1; flex-wrap: wrap; }
+    .cf-tab { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 13px; color: #475569;
+              text-decoration: none; padding: 7px 12px; border-radius: 8px; display: flex; gap: 7px; align-items: center; }
+    .cf-tab .cf-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+    .cf-tab:hover { background: #F1F5F9; color: #0F172A; }
+    .cf-tab.active { color: #0F172A; background: #F1F5F9; box-shadow: inset 0 -2px 0 var(--cf-accent, #0284C7); }
+    .cf-gnb .lang-selector, .cf-langs { display: flex; gap: 6px; }
+    .cf-gnb .lang-btn { background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 20px; padding: 5px 11px;
+              cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 12px; color: #475569;
+              font-weight: 500; text-decoration: none; font-family: 'Outfit', sans-serif; }
+    .cf-gnb .lang-btn.active { border-color: #0284C7; color: #0284C7; background: rgba(2,132,199,0.08); }
+    .cf-gnb .lang-btn:hover:not(.active) { border-color: #94A3B8; color: #0F172A; }
+    @media (max-width: 620px) { .cf-gnb-inner { gap: 8px; } .cf-nav { order: 3; width: 100%; } }
+    @media print { .cf-gnb { display: none !important; } }
+  </style>
+  <style>
+    :root {
+      --bg: #F8FAFC; --panel: #FFFFFF; --line: #E2E8F0; --ink: #0F172A;
+      --ink-dim: #475569; --ink-faint: #94A3B8;
+      --sans: 'Outfit', -apple-system, "Segoe UI", Roboto, sans-serif;
+      --mono: 'IBM Plex Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); min-height: 100vh; display: flex; flex-direction: column; }
+    main { max-width: 1080px; width: 100%; margin: 0 auto; padding: 0 24px 56px; flex: 1; }
+    .hero { text-align: center; padding: 52px 0 34px; }
+    .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; }
+    .hero p { margin-top: 12px; font-size: 15.5px; color: var(--ink-dim); max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
+    .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--acc);
+      border-radius: 14px; padding: 26px 26px 22px; text-decoration: none; color: var(--ink);
+      display: flex; flex-direction: column; gap: 12px; transition: transform .15s, box-shadow .15s; }
+    a.card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(15,23,42,0.08); }
+    .card-icon svg { width: 96px; height: 72px; display: block; }
+    .card h2 { font-size: 19px; font-weight: 600; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .card p { font-size: 13.8px; line-height: 1.65; color: var(--ink-dim); flex: 1; }
+    .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip { font-family: var(--mono); font-size: 10.5px; color: var(--ink-dim); background: #F1F5F9;
+      border: 1px solid var(--line); border-radius: 20px; padding: 3px 9px; }
+    .cta { font-weight: 600; font-size: 13.5px; color: var(--acc); }
+    .card-pro { opacity: 0.82; }
+    .soon { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: #64748B;
+      border: 1px solid var(--line); background: #F1F5F9; border-radius: 20px; padding: 3px 9px; }
+    .seo { margin-top: 52px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 34px; }
+    .seo h2 { font-size: 20px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #0284C7; }
+    .seo p { font-size: 14.5px; line-height: 1.75; color: var(--ink-dim); margin-bottom: 12px; }
+    .seo details { border-bottom: 1px solid var(--line); padding: 12px 4px; }
+    .seo summary { font-weight: 600; font-size: 14.5px; cursor: pointer; }
+    .seo details p { margin: 10px 0 2px; }
+    .faq-h { margin-top: 34px; }
+    footer { text-align: center; padding: 26px 24px; border-top: 1px solid var(--line);
+      color: var(--ink-faint); font-size: 11.5px; background: rgba(255,255,255,0.8); line-height: 1.7; }
+    footer a { color: var(--ink-dim); text-decoration: none; margin: 0 6px; }
+    footer a:hover { color: #0284C7; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://cubefreight.pages.dev/#site",
+      "name": "CubeFreight",
+      "url": "https://cubefreight.pages.dev/es/",
+      "inLanguage": "es",
+      "description": "Tres calculadoras de logística gratuitas en el navegador: dimensionamiento de cajas de cartón con troqueles RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC por densidad con vista previa de carga de camión. Sin registro."
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://cubefreight.pages.dev/es/#tools",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "WebApplication",
+            "name": "Calc 3D de Cartón",
+            "url": "https://cubefreight.pages.dev/carton/es/",
+            "description": "Convierte las dimensiones del producto en una especificación de cartón terminada: tamaño interior y exterior, un PDF de troquel RSC y la disposición que carga más unidades en un palet.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "WebApplication",
+            "name": "Calc 3D de Palet",
+            "url": "https://cubefreight.pages.dev/pallet/es/",
+            "description": "Calcula cartones por palet, compara el apilado entrelazado frente al de columna en 3D y exporta un informe de carga de una página.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "WebApplication",
+            "name": "Calc 3D de LTL",
+            "url": "https://cubefreight.pages.dev/ltl/es/",
+            "description": "Estima la clase de flete NMFC por densidad tanto en la escala clásica como en la de 13 subprovisiones de 2025, paletiza envíos multi-artículo y previsualiza la carga del camión.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://cubefreight.pages.dev/es/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Las calculadoras son realmente gratuitas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Las tres calculadoras son gratuitas, sin cuenta, sin límite de prueba y sin marcas de agua en las exportaciones PDF. El sitio se financia con publicidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Con qué calculadora debería empezar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sigue la cadena de envío: si aún estás decidiendo el tamaño de la caja, empieza con la calculadora de Cartón — también muestra la carga de palet para cada caja candidata. Si tu cartón está fijado, usa la calculadora de Palet para maximizar la carga. Si envías LTL en Norteamérica, pasa el resultado por la calculadora de LTL para estimar la clase de flete."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Salen mis datos del navegador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Las dimensiones, los pesos y las cantidades se procesan enteramente en tu navegador con JavaScript. Nada de lo que escribes se sube ni se almacena en un servidor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué estándares de palet se admiten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "T11 (1100×1100, KR/JP), Euro EPAL (1200×800), GMA de EE. UU. (48×40 in), ISO industrial (1200×1000), australiano (1165×1165) y tamaños totalmente personalizados, en mm, cm o pulgadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué precisión tiene la estimación de clase de flete?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La calculadora de LTL aplica los puntos de corte de densidad oficiales, incluida la escala de 13 subprovisiones de julio de 2025, y calcula la densidad exactamente como el NMFC mide una unidad de manipulación — palet incluido. La clasificación real puede diferir para mercancías con reglas especiales de estibabilidad, manipulación o responsabilidad, así que tómalo como una estimación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué añadirá la versión Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una suite de nivel escritorio para uso diario en producción: paletización multi-SKU, doble apilado, patrones de apilado en ladrillo, planificación de contenedores y exportaciones masivas. Está en desarrollo — las calculadoras web gratuitas seguirán siendo gratuitas."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="cf-gnb">
+  <div class="cf-gnb-inner">
+    <a class="cf-brand" href="/es/"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<polygon points="32,4 58,19 32,34 6,19" fill="#38BDF8"/>
+<polygon points="6,19 32,34 32,62 6,47" fill="#0284C7"/>
+<polygon points="32,34 58,19 58,47 32,62" fill="#D97706"/>
+</svg><span class="cf-word">Cube<b>Freight</b></span></a>
+    <nav class="cf-nav"><a href="/carton/es/" class="cf-tab"><span class="cf-dot" style="background:#D97706"></span>Cartón</a><a href="/pallet/es/" class="cf-tab"><span class="cf-dot" style="background:#0284C7"></span>Palet</a><a href="/ltl/es/" class="cf-tab"><span class="cf-dot" style="background:#059669"></span>Clase LTL</a></nav>
+    <div class="lang-selector cf-langs"><a class="lang-btn" href="/" hreflang="en">🇺🇸 en</a><a class="lang-btn" href="/ko/" hreflang="ko">🇰🇷 ko</a><a class="lang-btn" href="/zh/" hreflang="zh">🇨🇳 zh</a><a class="lang-btn active" href="/es/" hreflang="es">🇪🇸 es</a></div>
+  </div>
+</header>
+  <main>
+    <div class="hero">
+      <h1>Calculadoras de Logística 3D Gratuitas</h1>
+      <p>Dimensiona el cartón, carga el palet, estima la clase de flete — cada cálculo se ejecuta en tu navegador. Sin instalación, sin registro, gratis.</p>
+    </div>
+    <div class="grid">
+      <a class="card" href="/carton/es/" style="--acc:#D97706">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="48,14 78,29 48,44 18,29" fill="#E8C49B"/>
+<polygon points="18,29 48,44 48,68 18,53" fill="#B88650"/>
+<polygon points="48,44 78,29 78,53 48,68" fill="#D2A06A"/>
+<polygon points="18,29 48,14 40,6 10,21" fill="#C99568" opacity="0.9"/>
+<polygon points="78,29 48,14 56,6 86,21" fill="#DEAC76" opacity="0.9"/></svg></div>
+        <h2>Calc 3D de Cartón</h2>
+        <p>Convierte las dimensiones del producto en una especificación de cartón terminada: tamaño interior y exterior, un PDF de troquel RSC y la disposición que carga más unidades en un palet.</p>
+        <div class="chips"><span class="chip">Troquel RSC</span><span class="chip">Búsqueda de Carga Máx.</span><span class="chip">Exportar PDF</span></div>
+        <span class="cta">Abrir Calculadora →</span>
+      </a>
+      <a class="card" href="/pallet/es/" style="--acc:#0284C7">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="48,40 80,52 48,64 16,52" fill="#8B5A2B"/>
+<polygon points="16,52 48,64 48,70 16,58" fill="#6F4721"/>
+<polygon points="48,64 80,52 80,58 48,70" fill="#5C3A1A"/>
+<polygon points="34,25 56,33 34,41 12,33" fill="#7DD3FC"/>
+<polygon points="12,33 34,41 34,53 12,45" fill="#0284C7"/>
+<polygon points="34,41 56,33 56,45 34,53" fill="#38BDF8"/>
+<polygon points="62,20 84,28 62,36 40,28" fill="#BAE6FD"/>
+<polygon points="40,28 62,36 62,48 40,40" fill="#0369A1"/>
+<polygon points="62,36 84,28 84,40 62,48" fill="#0EA5E9"/>
+<polygon points="48,4 70,12 48,20 26,12" fill="#E0F2FE"/>
+<polygon points="26,12 48,20 48,32 26,24" fill="#075985"/>
+<polygon points="48,20 70,12 70,24 48,32" fill="#0284C7"/></svg></div>
+        <h2>Calc 3D de Palet</h2>
+        <p>Calcula cartones por palet, compara el apilado entrelazado frente al de columna en 3D y exporta un informe de carga de una página.</p>
+        <div class="chips"><span class="chip">T11 · EPAL · GMA</span><span class="chip">Simulación 3D</span><span class="chip">Informe PDF</span></div>
+        <span class="cta">Abrir Calculadora →</span>
+      </a>
+      <a class="card" href="/ltl/es/" style="--acc:#059669">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="34,10 82,26 34,42 -14,26" fill="#A7F3D0" opacity="0.35"/>
+<polygon points="40,14 76,26 40,38 4,26" fill="#D1FAE5"/>
+<polygon points="4,26 40,38 40,62 4,50" fill="#059669"/>
+<polygon points="40,38 76,26 76,50 40,62" fill="#34D399"/>
+<polygon points="76,34 90,39 90,53 76,58" fill="#065F46"/>
+<polygon points="76,50 90,53 90,57 76,62" fill="#064E3B"/>
+<circle cx="18" cy="63" r="5" fill="#0F172A"/><circle cx="58" cy="66" r="5" fill="#0F172A"/>
+<circle cx="82" cy="62" r="4" fill="#0F172A"/></svg></div>
+        <h2>Calc 3D de LTL</h2>
+        <p>Estima la clase de flete NMFC por densidad tanto en la escala clásica como en la de 13 subprovisiones de 2025, paletiza envíos multi-artículo y previsualiza la carga del camión.</p>
+        <div class="chips"><span class="chip">NMFC 2025</span><span class="chip">Modo Lote</span><span class="chip">Vista Camión 3D</span></div>
+        <span class="cta">Abrir Calculadora →</span>
+      </a>
+      <div class="card card-pro" style="--acc:#64748B">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="48,10 76,24 48,38 20,24" fill="#CBD5E1"/>
+<polygon points="20,24 48,38 48,64 20,50" fill="#64748B"/>
+<polygon points="48,38 76,24 76,50 48,64" fill="#94A3B8"/>
+<path d="M70 6 l2.2 5 5.4 0.6 -4 3.7 1.1 5.3 -4.7-2.7 -4.7 2.7 1.1-5.3 -4-3.7 5.4-0.6z" fill="#D97706"/></svg></div>
+        <h2>CubeFreight Pro <span class="soon">PRÓXIMAMENTE</span></h2>
+        <p>Suite de nivel escritorio con paletización multi-SKU, doble apilado, patrones de ladrillo y exportaciones masivas. En desarrollo.</p>
+      </div>
+    </div>
+    <section class="seo">
+      <h2>¿Qué es CubeFreight?</h2>
+      <p>CubeFreight es un conjunto de tres calculadoras de logística gratuitas creadas para ingenieros de embalaje, planificadores de almacén y transportistas LTL. Cada herramienta resuelve un paso de la misma cadena: la calculadora de Cartón diseña la caja de envío alrededor de tu producto, la calculadora de Palet encuentra la mejor forma de apilar esas cajas en un palet, y la calculadora de LTL estima la clase de flete NMFC que determina cuánto cuesta mover el envío.</p>
+      <p>Todo es una simple página web — las dimensiones nunca salen de tu navegador, los resultados se muestran como vistas 3D interactivas y cada herramienta exporta un informe PDF imprimible que puedes entregar al almacén o a tu transportista.</p>
+      <h2 class="faq-h">Preguntas Frecuentes</h2>
+      <details open><summary>¿Las calculadoras son realmente gratuitas?</summary><p>Sí. Las tres calculadoras son gratuitas, sin cuenta, sin límite de prueba y sin marcas de agua en las exportaciones PDF. El sitio se financia con publicidad.</p></details><details><summary>¿Con qué calculadora debería empezar?</summary><p>Sigue la cadena de envío: si aún estás decidiendo el tamaño de la caja, empieza con la calculadora de Cartón — también muestra la carga de palet para cada caja candidata. Si tu cartón está fijado, usa la calculadora de Palet para maximizar la carga. Si envías LTL en Norteamérica, pasa el resultado por la calculadora de LTL para estimar la clase de flete.</p></details><details><summary>¿Salen mis datos del navegador?</summary><p>No. Las dimensiones, los pesos y las cantidades se procesan enteramente en tu navegador con JavaScript. Nada de lo que escribes se sube ni se almacena en un servidor.</p></details><details><summary>¿Qué estándares de palet se admiten?</summary><p>T11 (1100×1100, KR/JP), Euro EPAL (1200×800), GMA de EE. UU. (48×40 in), ISO industrial (1200×1000), australiano (1165×1165) y tamaños totalmente personalizados, en mm, cm o pulgadas.</p></details><details><summary>¿Qué precisión tiene la estimación de clase de flete?</summary><p>La calculadora de LTL aplica los puntos de corte de densidad oficiales, incluida la escala de 13 subprovisiones de julio de 2025, y calcula la densidad exactamente como el NMFC mide una unidad de manipulación — palet incluido. La clasificación real puede diferir para mercancías con reglas especiales de estibabilidad, manipulación o responsabilidad, así que tómalo como una estimación.</p></details><details><summary>¿Qué añadirá la versión Pro?</summary><p>Una suite de nivel escritorio para uso diario en producción: paletización multi-SKU, doble apilado, patrones de apilado en ladrillo, planificación de contenedores y exportaciones masivas. Está en desarrollo — las calculadoras web gratuitas seguirán siendo gratuitas.</p></details>
+    </section>
+  </main>
+  <footer>
+    <p><a href="/about/">About</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/contact/">Contact</a></p>
+    <p>© 2026 CubeFreight. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CubeFreight — 무료 카톤·팔레트·화물 클래스 계산기 (3D)</title>
+  <meta name="description" content="무료 물류 계산기 3종: RSC 칼선 도면을 포함한 카톤 박스 설계, 3D 팔레트 적재 최적화, 트럭 적재 미리보기를 지원하는 NMFC 화물 클래스 밀도 계산. 가입 불필요.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://cubefreight.pages.dev/ko/">
+  <link rel="alternate" hreflang="en" href="https://cubefreight.pages.dev/">
+  <link rel="alternate" hreflang="ko" href="https://cubefreight.pages.dev/ko/">
+  <link rel="alternate" hreflang="zh" href="https://cubefreight.pages.dev/zh/">
+  <link rel="alternate" hreflang="es" href="https://cubefreight.pages.dev/es/">
+  <link rel="alternate" hreflang="x-default" href="https://cubefreight.pages.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CubeFreight">
+  <meta property="og:title" content="CubeFreight — 무료 카톤·팔레트·화물 클래스 계산기 (3D)">
+  <meta property="og:description" content="무료 물류 계산기 3종: RSC 칼선 도면을 포함한 카톤 박스 설계, 3D 팔레트 적재 최적화, 트럭 적재 미리보기를 지원하는 NMFC 화물 클래스 밀도 계산. 가입 불필요.">
+  <meta property="og:url" content="https://cubefreight.pages.dev/ko/">
+  <meta property="og:image" content="https://cubefreight.pages.dev/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CubeFreight — 무료 카톤·팔레트·화물 클래스 계산기 (3D)">
+  <meta name="twitter:description" content="무료 물류 계산기 3종: RSC 칼선 도면을 포함한 카톤 박스 설계, 3D 팔레트 적재 최적화, 트럭 적재 미리보기를 지원하는 NMFC 화물 클래스 밀도 계산. 가입 불필요.">
+  <meta name="twitter:image" content="https://cubefreight.pages.dev/og-image.png">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style id="cfGnbCss">
+    .cf-gnb { position: sticky; top: 0; z-index: 1000; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; }
+    .cf-gnb-inner { max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cf-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: #0F172A; }
+    .cf-brand svg { width: 27px; height: 27px; display: block; }
+    .cf-word { font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 17px; letter-spacing: -0.2px; }
+    .cf-word b { font-weight: 700; }
+    .cf-nav { display: flex; gap: 2px; flex: 1; flex-wrap: wrap; }
+    .cf-tab { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 13px; color: #475569;
+              text-decoration: none; padding: 7px 12px; border-radius: 8px; display: flex; gap: 7px; align-items: center; }
+    .cf-tab .cf-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+    .cf-tab:hover { background: #F1F5F9; color: #0F172A; }
+    .cf-tab.active { color: #0F172A; background: #F1F5F9; box-shadow: inset 0 -2px 0 var(--cf-accent, #0284C7); }
+    .cf-gnb .lang-selector, .cf-langs { display: flex; gap: 6px; }
+    .cf-gnb .lang-btn { background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 20px; padding: 5px 11px;
+              cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 12px; color: #475569;
+              font-weight: 500; text-decoration: none; font-family: 'Outfit', sans-serif; }
+    .cf-gnb .lang-btn.active { border-color: #0284C7; color: #0284C7; background: rgba(2,132,199,0.08); }
+    .cf-gnb .lang-btn:hover:not(.active) { border-color: #94A3B8; color: #0F172A; }
+    @media (max-width: 620px) { .cf-gnb-inner { gap: 8px; } .cf-nav { order: 3; width: 100%; } }
+    @media print { .cf-gnb { display: none !important; } }
+  </style>
+  <style>
+    :root {
+      --bg: #F8FAFC; --panel: #FFFFFF; --line: #E2E8F0; --ink: #0F172A;
+      --ink-dim: #475569; --ink-faint: #94A3B8;
+      --sans: 'Outfit', -apple-system, "Segoe UI", Roboto, sans-serif;
+      --mono: 'IBM Plex Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); min-height: 100vh; display: flex; flex-direction: column; }
+    main { max-width: 1080px; width: 100%; margin: 0 auto; padding: 0 24px 56px; flex: 1; }
+    .hero { text-align: center; padding: 52px 0 34px; }
+    .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; }
+    .hero p { margin-top: 12px; font-size: 15.5px; color: var(--ink-dim); max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
+    .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--acc);
+      border-radius: 14px; padding: 26px 26px 22px; text-decoration: none; color: var(--ink);
+      display: flex; flex-direction: column; gap: 12px; transition: transform .15s, box-shadow .15s; }
+    a.card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(15,23,42,0.08); }
+    .card-icon svg { width: 96px; height: 72px; display: block; }
+    .card h2 { font-size: 19px; font-weight: 600; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .card p { font-size: 13.8px; line-height: 1.65; color: var(--ink-dim); flex: 1; }
+    .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip { font-family: var(--mono); font-size: 10.5px; color: var(--ink-dim); background: #F1F5F9;
+      border: 1px solid var(--line); border-radius: 20px; padding: 3px 9px; }
+    .cta { font-weight: 600; font-size: 13.5px; color: var(--acc); }
+    .card-pro { opacity: 0.82; }
+    .soon { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: #64748B;
+      border: 1px solid var(--line); background: #F1F5F9; border-radius: 20px; padding: 3px 9px; }
+    .seo { margin-top: 52px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 34px; }
+    .seo h2 { font-size: 20px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #0284C7; }
+    .seo p { font-size: 14.5px; line-height: 1.75; color: var(--ink-dim); margin-bottom: 12px; }
+    .seo details { border-bottom: 1px solid var(--line); padding: 12px 4px; }
+    .seo summary { font-weight: 600; font-size: 14.5px; cursor: pointer; }
+    .seo details p { margin: 10px 0 2px; }
+    .faq-h { margin-top: 34px; }
+    footer { text-align: center; padding: 26px 24px; border-top: 1px solid var(--line);
+      color: var(--ink-faint); font-size: 11.5px; background: rgba(255,255,255,0.8); line-height: 1.7; }
+    footer a { color: var(--ink-dim); text-decoration: none; margin: 0 6px; }
+    footer a:hover { color: #0284C7; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://cubefreight.pages.dev/#site",
+      "name": "CubeFreight",
+      "url": "https://cubefreight.pages.dev/ko/",
+      "inLanguage": "ko",
+      "description": "무료 물류 계산기 3종: RSC 칼선 도면을 포함한 카톤 박스 설계, 3D 팔레트 적재 최적화, 트럭 적재 미리보기를 지원하는 NMFC 화물 클래스 밀도 계산. 가입 불필요."
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://cubefreight.pages.dev/ko/#tools",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "WebApplication",
+            "name": "카톤 3D 계산기",
+            "url": "https://cubefreight.pages.dev/carton/ko/",
+            "description": "제품 치수를 입력하면 카톤 내경·외경, RSC 칼선 PDF, 그리고 팔레트에 가장 많이 실리는 배열까지 완성된 카톤 사양을 산출합니다.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "WebApplication",
+            "name": "팔레트 3D 계산기",
+            "url": "https://cubefreight.pages.dev/pallet/ko/",
+            "description": "팔레트당 카톤 수량을 계산하고, 교차적재와 일렬적재를 3D로 비교하며, 한 장짜리 적재 보고서를 출력합니다.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "WebApplication",
+            "name": "LTL 3D 계산기",
+            "url": "https://cubefreight.pages.dev/ltl/ko/",
+            "description": "기존 스케일과 2025년 13-sub 스케일 양쪽으로 NMFC 밀도 클래스를 추정하고, 다품목 팔레타이징과 트럭 적재 미리보기를 지원합니다.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://cubefreight.pages.dev/ko/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "계산기는 정말 무료인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네. 세 가지 계산기 모두 무료이며 계정, 사용 제한, PDF 워터마크가 없습니다. 사이트는 광고로 운영됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "어떤 계산기부터 시작해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "물류 체인 순서를 따르세요. 박스 크기를 아직 정하지 않았다면 카톤 계산기부터 — 후보 박스별 팔레트 적재량까지 같이 보여줍니다. 카톤이 정해져 있다면 팔레트 계산기로 적재를 극대화하세요. 북미 LTL 운송이라면 그 결과를 LTL 계산기에 넣어 화물 클래스를 추정하세요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "입력한 데이터가 서버로 전송되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아니요. 치수, 무게, 수량은 모두 브라우저 안에서 JavaScript로 처리됩니다. 입력한 어떤 값도 업로드되거나 서버에 저장되지 않습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "어떤 팔레트 규격을 지원하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "T11(1100×1100, 한국/일본), 유로 EPAL(1200×800), 미국 GMA(48×40인치), ISO 산업용(1200×1000), 호주(1165×1165) 및 완전 커스텀 규격을 mm·cm·인치 단위로 지원합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "화물 클래스 추정은 얼마나 정확한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "LTL 계산기는 2025년 7월 13-sub 스케일을 포함한 공식 밀도 구간을 적용하고, NMFC가 핸들링 유닛을 측정하는 방식 그대로(팔레트 포함) 밀도를 계산합니다. 다만 적재성·취급성·책임 특성이 있는 품목은 실제 등급이 다를 수 있으므로 추정치로 활용하세요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pro 버전에는 무엇이 추가되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "실무 데일리용 데스크톱급 제품군입니다: 혼합 SKU 팔레타이징, 더블 스태킹, 브릭 스태킹 패턴, 컨테이너 플래닝, 대량 내보내기. 현재 개발 중이며, 무료 웹 계산기는 계속 무료입니다."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="cf-gnb">
+  <div class="cf-gnb-inner">
+    <a class="cf-brand" href="/ko/"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<polygon points="32,4 58,19 32,34 6,19" fill="#38BDF8"/>
+<polygon points="6,19 32,34 32,62 6,47" fill="#0284C7"/>
+<polygon points="32,34 58,19 58,47 32,62" fill="#D97706"/>
+</svg><span class="cf-word">Cube<b>Freight</b></span></a>
+    <nav class="cf-nav"><a href="/carton/ko/" class="cf-tab"><span class="cf-dot" style="background:#D97706"></span>카톤</a><a href="/pallet/ko/" class="cf-tab"><span class="cf-dot" style="background:#0284C7"></span>팔레트</a><a href="/ltl/ko/" class="cf-tab"><span class="cf-dot" style="background:#059669"></span>LTL 클래스</a></nav>
+    <div class="lang-selector cf-langs"><a class="lang-btn" href="/" hreflang="en">🇺🇸 en</a><a class="lang-btn active" href="/ko/" hreflang="ko">🇰🇷 ko</a><a class="lang-btn" href="/zh/" hreflang="zh">🇨🇳 zh</a><a class="lang-btn" href="/es/" hreflang="es">🇪🇸 es</a></div>
+  </div>
+</header>
+  <main>
+    <div class="hero">
+      <h1>무료 3D 물류 계산기</h1>
+      <p>카톤 설계부터 팔레트 적재, 화물 클래스 산정까지 — 모든 계산은 브라우저 안에서 실행됩니다. 설치 없음, 가입 없음, 무료.</p>
+    </div>
+    <div class="grid">
+      <a class="card" href="/carton/ko/" style="--acc:#D97706">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="48,14 78,29 48,44 18,29" fill="#E8C49B"/>
+<polygon points="18,29 48,44 48,68 18,53" fill="#B88650"/>
+<polygon points="48,44 78,29 78,53 48,68" fill="#D2A06A"/>
+<polygon points="18,29 48,14 40,6 10,21" fill="#C99568" opacity="0.9"/>
+<polygon points="78,29 48,14 56,6 86,21" fill="#DEAC76" opacity="0.9"/></svg></div>
+        <h2>카톤 3D 계산기</h2>
+        <p>제품 치수를 입력하면 카톤 내경·외경, RSC 칼선 PDF, 그리고 팔레트에 가장 많이 실리는 배열까지 완성된 카톤 사양을 산출합니다.</p>
+        <div class="chips"><span class="chip">RSC 칼선 도면</span><span class="chip">최대 적재 탐색</span><span class="chip">PDF 저장</span></div>
+        <span class="cta">계산기 열기 →</span>
+      </a>
+      <a class="card" href="/pallet/ko/" style="--acc:#0284C7">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="48,40 80,52 48,64 16,52" fill="#8B5A2B"/>
+<polygon points="16,52 48,64 48,70 16,58" fill="#6F4721"/>
+<polygon points="48,64 80,52 80,58 48,70" fill="#5C3A1A"/>
+<polygon points="34,25 56,33 34,41 12,33" fill="#7DD3FC"/>
+<polygon points="12,33 34,41 34,53 12,45" fill="#0284C7"/>
+<polygon points="34,41 56,33 56,45 34,53" fill="#38BDF8"/>
+<polygon points="62,20 84,28 62,36 40,28" fill="#BAE6FD"/>
+<polygon points="40,28 62,36 62,48 40,40" fill="#0369A1"/>
+<polygon points="62,36 84,28 84,40 62,48" fill="#0EA5E9"/>
+<polygon points="48,4 70,12 48,20 26,12" fill="#E0F2FE"/>
+<polygon points="26,12 48,20 48,32 26,24" fill="#075985"/>
+<polygon points="48,20 70,12 70,24 48,32" fill="#0284C7"/></svg></div>
+        <h2>팔레트 3D 계산기</h2>
+        <p>팔레트당 카톤 수량을 계산하고, 교차적재와 일렬적재를 3D로 비교하며, 한 장짜리 적재 보고서를 출력합니다.</p>
+        <div class="chips"><span class="chip">T11 · EPAL · GMA</span><span class="chip">3D 시뮬레이션</span><span class="chip">PDF 보고서</span></div>
+        <span class="cta">계산기 열기 →</span>
+      </a>
+      <a class="card" href="/ltl/ko/" style="--acc:#059669">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="34,10 82,26 34,42 -14,26" fill="#A7F3D0" opacity="0.35"/>
+<polygon points="40,14 76,26 40,38 4,26" fill="#D1FAE5"/>
+<polygon points="4,26 40,38 40,62 4,50" fill="#059669"/>
+<polygon points="40,38 76,26 76,50 40,62" fill="#34D399"/>
+<polygon points="76,34 90,39 90,53 76,58" fill="#065F46"/>
+<polygon points="76,50 90,53 90,57 76,62" fill="#064E3B"/>
+<circle cx="18" cy="63" r="5" fill="#0F172A"/><circle cx="58" cy="66" r="5" fill="#0F172A"/>
+<circle cx="82" cy="62" r="4" fill="#0F172A"/></svg></div>
+        <h2>LTL 3D 계산기</h2>
+        <p>기존 스케일과 2025년 13-sub 스케일 양쪽으로 NMFC 밀도 클래스를 추정하고, 다품목 팔레타이징과 트럭 적재 미리보기를 지원합니다.</p>
+        <div class="chips"><span class="chip">NMFC 2025</span><span class="chip">배치 모드</span><span class="chip">트럭 3D 뷰</span></div>
+        <span class="cta">계산기 열기 →</span>
+      </a>
+      <div class="card card-pro" style="--acc:#64748B">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="48,10 76,24 48,38 20,24" fill="#CBD5E1"/>
+<polygon points="20,24 48,38 48,64 20,50" fill="#64748B"/>
+<polygon points="48,38 76,24 76,50 48,64" fill="#94A3B8"/>
+<path d="M70 6 l2.2 5 5.4 0.6 -4 3.7 1.1 5.3 -4.7-2.7 -4.7 2.7 1.1-5.3 -4-3.7 5.4-0.6z" fill="#D97706"/></svg></div>
+        <h2>CubeFreight Pro <span class="soon">출시 예정</span></h2>
+        <p>혼합 SKU 팔레타이징, 더블 스태킹, 브릭 패턴, 대량 내보내기를 갖춘 데스크톱급 제품군. 개발 중입니다.</p>
+      </div>
+    </div>
+    <section class="seo">
+      <h2>CubeFreight란?</h2>
+      <p>CubeFreight는 포장 엔지니어, 물류 담당자, LTL 화주를 위한 무료 물류 계산기 3종 모음입니다. 세 도구는 같은 물류 체인의 각 단계를 담당합니다. 카톤 계산기가 제품에 맞는 박스를 설계하고, 팔레트 계산기가 그 박스를 팔레트에 가장 효율적으로 쌓는 방법을 찾고, LTL 계산기가 운임을 결정하는 NMFC 화물 클래스를 추정합니다.</p>
+      <p>모든 도구는 순수 웹 페이지입니다. 입력한 치수는 브라우저 밖으로 나가지 않고, 결과는 인터랙티브 3D 뷰로 표시되며, 창고나 운송사에 바로 전달할 수 있는 PDF 보고서로 저장됩니다.</p>
+      <h2 class="faq-h">자주 묻는 질문</h2>
+      <details open><summary>계산기는 정말 무료인가요?</summary><p>네. 세 가지 계산기 모두 무료이며 계정, 사용 제한, PDF 워터마크가 없습니다. 사이트는 광고로 운영됩니다.</p></details><details><summary>어떤 계산기부터 시작해야 하나요?</summary><p>물류 체인 순서를 따르세요. 박스 크기를 아직 정하지 않았다면 카톤 계산기부터 — 후보 박스별 팔레트 적재량까지 같이 보여줍니다. 카톤이 정해져 있다면 팔레트 계산기로 적재를 극대화하세요. 북미 LTL 운송이라면 그 결과를 LTL 계산기에 넣어 화물 클래스를 추정하세요.</p></details><details><summary>입력한 데이터가 서버로 전송되나요?</summary><p>아니요. 치수, 무게, 수량은 모두 브라우저 안에서 JavaScript로 처리됩니다. 입력한 어떤 값도 업로드되거나 서버에 저장되지 않습니다.</p></details><details><summary>어떤 팔레트 규격을 지원하나요?</summary><p>T11(1100×1100, 한국/일본), 유로 EPAL(1200×800), 미국 GMA(48×40인치), ISO 산업용(1200×1000), 호주(1165×1165) 및 완전 커스텀 규격을 mm·cm·인치 단위로 지원합니다.</p></details><details><summary>화물 클래스 추정은 얼마나 정확한가요?</summary><p>LTL 계산기는 2025년 7월 13-sub 스케일을 포함한 공식 밀도 구간을 적용하고, NMFC가 핸들링 유닛을 측정하는 방식 그대로(팔레트 포함) 밀도를 계산합니다. 다만 적재성·취급성·책임 특성이 있는 품목은 실제 등급이 다를 수 있으므로 추정치로 활용하세요.</p></details><details><summary>Pro 버전에는 무엇이 추가되나요?</summary><p>실무 데일리용 데스크톱급 제품군입니다: 혼합 SKU 팔레타이징, 더블 스태킹, 브릭 스태킹 패턴, 컨테이너 플래닝, 대량 내보내기. 현재 개발 중이며, 무료 웹 계산기는 계속 무료입니다.</p></details>
+    </section>
+  </main>
+  <footer>
+    <p><a href="/about/">About</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/contact/">Contact</a></p>
+    <p>© 2026 CubeFreight. All rights reserved.</p>
+  </footer>
+</body>
+</html>
