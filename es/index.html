@@ -65,8 +65,9 @@
     .hero { text-align: center; padding: 52px 0 34px; }
     .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; }
     .hero p { margin-top: 12px; font-size: 15.5px; color: var(--ink-dim); max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.65; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
     .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--acc);
       border-radius: 14px; padding: 26px 26px 22px; text-decoration: none; color: var(--ink);
       display: flex; flex-direction: column; gap: 12px; transition: transform .15s, box-shadow .15s; }
@@ -153,6 +154,42 @@
             "name": "Calc 3D de LTL",
             "url": "https://cubefreight.pages.dev/ltl/es/",
             "description": "Estima la clase de flete NMFC por densidad tanto en la escala clásica como en la de 13 subprovisiones de 2025, paletiza envíos multi-artículo y previsualiza la carga del camión.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "WebApplication",
+            "name": "Calc de Peso DIM",
+            "url": "https://cubefreight.pages.dev/tools/dim-weight/es/",
+            "description": "Obtén el peso dimensional (volumétrico) y el peso facturable de envíos de paquetería y mensajería — factores DIM de UPS, FedEx, DHL y USPS incluidos.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "WebApplication",
+            "name": "Calculadora CBM",
+            "url": "https://cubefreight.pages.dev/tools/cbm/es/",
+            "description": "Convierte las dimensiones del cartón en metros cúbicos para flete marítimo y aéreo, con peso facturable y cuántos caben en un contenedor de 20 o 40 pies.",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "All",
             "isAccessibleForFree": true,
@@ -285,6 +322,30 @@
         <h2>Calc 3D de LTL</h2>
         <p>Estima la clase de flete NMFC por densidad tanto en la escala clásica como en la de 13 subprovisiones de 2025, paletiza envíos multi-artículo y previsualiza la carga del camión.</p>
         <div class="chips"><span class="chip">NMFC 2025</span><span class="chip">Modo Lote</span><span class="chip">Vista Camión 3D</span></div>
+        <span class="cta">Abrir Calculadora →</span>
+      </a>
+      <a class="card" href="/tools/dim-weight/es/" style="--acc:#7C3AED">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="46,12 72,26 46,40 20,26" fill="#C4B5FD"/>
+<polygon points="20,26 46,40 46,66 20,52" fill="#6D28D9"/>
+<polygon points="46,40 72,26 72,52 46,66" fill="#7C3AED"/>
+<polygon points="46,12 51,14.7 46,17.4 41,14.7" fill="#EDE9FE"/>
+<path d="M83 30 v20 M83 30 l-4 5 M83 30 l4 5 M83 50 l-4 -5 M83 50 l4 -5" stroke="#7C3AED" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg></div>
+        <h2>Calc de Peso DIM</h2>
+        <p>Obtén el peso dimensional (volumétrico) y el peso facturable de envíos de paquetería y mensajería — factores DIM de UPS, FedEx, DHL y USPS incluidos.</p>
+        <div class="chips"><span class="chip">Paquetería</span><span class="chip">UPS/FedEx/DHL</span><span class="chip">Informe PDF</span></div>
+        <span class="cta">Abrir Calculadora →</span>
+      </a>
+      <a class="card" href="/tools/cbm/es/" style="--acc:#0D9488">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="44,12 70,26 44,40 18,26" fill="#5EEAD4"/>
+<polygon points="18,26 44,40 44,66 18,52" fill="#0F766E"/>
+<polygon points="44,40 70,26 70,52 44,66" fill="#0D9488"/>
+<path d="M80 24 v30 M80 24 l-4 5 M80 24 l4 5 M80 54 l-4 -5 M80 54 l4 -5" stroke="#0D9488" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<text x="59" y="20" font-family="monospace" font-size="11" font-weight="700" fill="#0F766E">m³</text></svg></div>
+        <h2>Calculadora CBM</h2>
+        <p>Convierte las dimensiones del cartón en metros cúbicos para flete marítimo y aéreo, con peso facturable y cuántos caben en un contenedor de 20 o 40 pies.</p>
+        <div class="chips"><span class="chip">Marítimo · Aéreo</span><span class="chip">Ajuste Contenedor</span><span class="chip">Informe PDF</span></div>
         <span class="cta">Abrir Calculadora →</span>
       </a>
       <div class="card card-pro" style="--acc:#64748B">

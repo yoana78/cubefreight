@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>体积重量计算器 — 材积重量·计费重量 (UPS, FedEx, DHL)</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2965119835410946"
+     crossorigin="anonymous"></script>
+  <meta name="description" content="免费体积重量（材积重量）计算器。输入箱子尺寸和重量，即可计算UPS·FedEx·DHL·USPS快递的体积重量与计费重量。支持英制与公制。">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://cubefreight.pages.dev/tools/dim-weight/zh/">
+  <link rel="alternate" hreflang="en" href="https://cubefreight.pages.dev/tools/dim-weight/">
+  <link rel="alternate" hreflang="ko" href="https://cubefreight.pages.dev/tools/dim-weight/ko/">
+  <link rel="alternate" hreflang="zh" href="https://cubefreight.pages.dev/tools/dim-weight/zh/">
+  <link rel="alternate" hreflang="es" href="https://cubefreight.pages.dev/tools/dim-weight/es/">
+  <link rel="alternate" hreflang="x-default" href="https://cubefreight.pages.dev/tools/dim-weight/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CubeFreight">
+  <meta property="og:title" content="体积重量计算器 — 材积重量·计费重量 (UPS, FedEx, DHL)">
+  <meta property="og:description" content="免费体积重量（材积重量）计算器。输入箱子尺寸和重量，即可计算UPS·FedEx·DHL·USPS快递的体积重量与计费重量。支持英制与公制。">
+  <meta property="og:url" content="https://cubefreight.pages.dev/tools/dim-weight/zh/">
+  <meta property="og:image" content="https://cubefreight.pages.dev/og-image.png">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style id="cfGnbCss">
+    .cf-gnb { position: sticky; top: 0; z-index: 1000; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; }
+    .cf-gnb-inner { max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cf-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: #0F172A; }
+    .cf-brand svg { width: 27px; height: 27px; display: block; }
+    .cf-word { font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 17px; letter-spacing: -0.2px; }
+    .cf-word b { font-weight: 700; }
+    .cf-nav { display: flex; gap: 2px; flex: 1; flex-wrap: wrap; }
+    .cf-tab { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 13px; color: #475569;
+              text-decoration: none; padding: 7px 12px; border-radius: 8px; display: flex; gap: 7px; align-items: center; }
+    .cf-tab .cf-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+    .cf-tab:hover { background: #F1F5F9; color: #0F172A; }
+    .cf-tab.active { color: #0F172A; background: #F1F5F9; box-shadow: inset 0 -2px 0 var(--cf-accent, #0284C7); }
+    .cf-gnb .lang-selector, .cf-langs { display: flex; gap: 6px; }
+    .cf-gnb .lang-btn { background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 20px; padding: 5px 11px;
+              cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 12px; color: #475569;
+              font-weight: 500; text-decoration: none; font-family: 'Outfit', sans-serif; }
+    .cf-gnb .lang-btn.active { border-color: #0284C7; color: #0284C7; background: rgba(2,132,199,0.08); }
+    .cf-gnb .lang-btn:hover:not(.active) { border-color: #94A3B8; color: #0F172A; }
+    @media (max-width: 620px) { .cf-gnb-inner { gap: 8px; } .cf-nav { order: 3; width: 100%; } }
+    @media print { .cf-gnb { display: none !important; } }
+  </style>
+  <style>
+    :root { --acc: #7C3AED; --accd: rgba(124,58,237,0.08); --bg:#F8FAFC; --panel:#FFF; --line:#E2E8F0;
+      --ink:#0F172A; --ink-dim:#475569; --ink-faint:#94A3B8;
+      --sans:'Outfit',-apple-system,"Segoe UI",Roboto,sans-serif; --mono:'IBM Plex Mono',monospace; }
+    * { box-sizing:border-box; margin:0; }
+    body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
+    main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
+    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
+      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
+      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
+    .tool-h { font-size:26px; font-weight:700; }
+    .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
+    .form { display:grid; grid-template-columns:1fr 1fr; gap:14px 16px; }
+    .field { display:flex; flex-direction:column; gap:6px; min-width:0; }
+    .field-wide { grid-column:span 2; }
+    @media (max-width:560px) { .form { grid-template-columns:1fr; } .field-wide { grid-column:span 1; } }
+    label { font-size:12.5px; font-weight:600; color:var(--ink-dim); }
+    input, select { font-family:var(--mono); font-size:15px; padding:9px 11px; border:1px solid var(--line);
+      border-radius:8px; background:var(--bg); color:var(--ink); width:100%; }
+    input:focus, select:focus { outline:none; border-color:var(--acc); }
+    .dims { display:flex; align-items:center; gap:7px; }
+    .dims input { text-align:center; } .dims span { color:var(--ink-faint); font-family:var(--mono); }
+    .dims .u, .one .u { font-size:12px; color:var(--ink-dim); min-width:22px; }
+    .one { display:flex; align-items:center; gap:7px; }
+    .dash { border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    .dash-title { background:var(--accd); border-bottom:1px solid var(--line); padding:9px 14px;
+      font-family:var(--mono); font-size:12px; font-weight:600; color:var(--acc); letter-spacing:1px;
+      display:flex; justify-content:space-between; }
+    .dash-tag { color:var(--ink-faint); }
+    .kpis { display:grid; grid-template-columns:1fr 1fr 1fr; }
+    @media (max-width:560px) { .kpis { grid-template-columns:1fr 1fr; } }
+    .kpi { padding:11px 14px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .kpi .l { font-size:11px; color:var(--ink-dim); font-weight:600; }
+    .kpi .v { font-family:var(--mono); font-size:19px; font-weight:700; margin-top:2px; }
+    .kpi .v span { font-size:11px; color:var(--ink-faint); font-weight:400; }
+    .kpi .s { font-size:10px; color:var(--ink-faint); margin-top:1px; }
+    .kpi.acc { background:var(--accd); } .kpi.acc .v { color:var(--acc); font-size:22px; }
+    .cost-note { font-size:11.5px; color:var(--ink-faint); font-style:italic; margin:9px 2px 0; line-height:1.5; }
+    .info-note { font-size:11.5px; color:var(--ink-dim); margin:9px 2px 0; line-height:1.5; }
+    .size-warn { border-radius:8px; padding:9px 12px; font-size:12.5px; margin-top:10px; line-height:1.5; }
+    .size-warn.green { background:rgba(5,150,105,0.08); color:#065F46; border:1px solid #10B981; }
+    .size-warn.amber { background:rgba(217,119,6,0.09); color:#92400E; border:1px solid #D97706; }
+    .size-warn.red { background:rgba(239,68,68,0.07); color:#991B1B; border:1px solid #EF4444; }
+    .size-warn .n { font-size:10.5px; opacity:0.85; font-weight:400; }
+    .cmp { margin-top:12px; }
+    .cmp-h { font-size:12px; font-weight:600; color:var(--ink-dim); margin-bottom:5px; }
+    .cmp-t { width:100%; border-collapse:collapse; font-size:12.5px; }
+    .cmp-t th, .cmp-t td { border:1px solid var(--line); padding:5px 9px; text-align:left; font-family:var(--mono); }
+    .cmp-t th { background:#F1F5F9; font-weight:600; }
+    .viz { border:1px solid var(--line); border-radius:12px; margin-top:14px; padding:14px; }
+    .viz-h { font-size:12px; font-weight:600; color:var(--ink-dim); margin-bottom:6px; }
+    #boxSvg { width:100%; height:auto; max-height:340px; display:block; }
+    .legend { text-align:center; font-size:11px; color:var(--ink-dim); margin-top:6px; }
+    .legend b { display:inline-block; width:10px; height:10px; border-radius:2px; background:#D2A06A; vertical-align:middle; margin-right:4px; }
+    .actions { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn { font-family:var(--sans); font-weight:600; font-size:14px; padding:11px 18px; border-radius:9px;
+      border:none; cursor:pointer; }
+    .btn-pdf { background:var(--acc); color:#fff; }
+    .btn-rel { background:var(--panel); border:1px solid var(--line); color:var(--ink-dim); text-decoration:none; display:inline-flex; align-items:center; }
+    .seo { margin-top:34px; }
+    .seo h2 { font-size:19px; margin:22px 0 10px; padding-bottom:8px; border-bottom:2px solid var(--acc); }
+    .seo p { font-size:14.5px; line-height:1.75; color:var(--ink-dim); margin-bottom:12px; }
+    .seo table { width:100%; border-collapse:collapse; font-size:13px; margin:10px 0; }
+    .seo th, .seo td { border:1px solid var(--line); padding:7px 10px; text-align:left; }
+    .seo th { background:#F1F5F9; font-weight:600; } .seo td { font-family:var(--mono); color:var(--ink-dim); }
+    .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
+    .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
+    .seo details p { margin:9px 0 2px; }
+    footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
+      font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
+    footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
+    .print-header { display:none; }
+    @media print {
+      @page { size:A4 portrait; margin:0; }
+      * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+      body > *:not(main), .cf-gnb, .ad, #inputCard, .seo, footer, .actions, .related { display:none !important; }
+      main { padding:12mm !important; max-width:100% !important; }
+      .print-header { display:block !important; text-align:center; color:var(--acc);
+        font-size:15px; font-weight:800; border-bottom:3px double var(--acc); padding-bottom:7px; margin-bottom:12px; }
+      .print-header .d { display:block; font-size:9px; font-weight:400; color:#64748B; margin-top:3px; }
+      .kpi .v { font-size:15px; } .kpi.acc .v { font-size:17px; }
+      #boxSvg { max-height:120mm; }
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://cubefreight.pages.dev/tools/dim-weight/zh/#app",
+      "name": "体积重量计算器",
+      "url": "https://cubefreight.pages.dev/tools/dim-weight/zh/",
+      "description": "免费体积重量（材积重量）计算器。输入箱子尺寸和重量，即可计算UPS·FedEx·DHL·USPS快递的体积重量与计费重量。支持英制与公制。",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "zh",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://cubefreight.pages.dev/tools/dim-weight/zh/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "体积重量怎么计算？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "长 × 宽 × 高得出体积，再除以承运商体积系数。12 × 10 × 8 in 箱子按系数139：960 ÷ 139 = 6.9 lb 体积重量。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "计费重量是什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "实际收费的重量：实际重量和体积重量中较大者，向上取整到磅或千克。箱子相对尺寸偏轻时，通常按体积重量计费。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "该用哪个体积系数？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "取决于承运商和合同。美国国内 UPS·FedEx 常用139(in³/lb)，USPS 超过1立方英尺用166。国际空运通常用5000或6000(cm³/kg)。请以运输合同为准。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "箱子要按外径量吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "是的。始终测量打包后纸箱的外径（含鼓起部分），那才是货物在车辆中占用的空间。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这和CBM一样吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不一样。体积重量用于快递·速运，把体积换算成计费重量；CBM是海运·空运用的原始体积（立方米）。集装箱·拼箱货请用CBM计算器。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="cf-gnb">
+  <div class="cf-gnb-inner">
+    <a class="cf-brand" href="/zh/"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<polygon points="32,4 58,19 32,34 6,19" fill="#38BDF8"/>
+<polygon points="6,19 32,34 32,62 6,47" fill="#0284C7"/>
+<polygon points="32,34 58,19 58,47 32,62" fill="#D97706"/>
+</svg><span class="cf-word">Cube<b>Freight</b></span></a>
+    <nav class="cf-nav"><a href="/carton/zh/" class="cf-tab"><span class="cf-dot" style="background:#D97706"></span>纸箱</a><a href="/pallet/zh/" class="cf-tab"><span class="cf-dot" style="background:#0284C7"></span>托盘</a><a href="/ltl/" class="cf-tab"><span class="cf-dot" style="background:#059669"></span>LTL等级</a></nav>
+    <div class="lang-selector cf-langs"><a class="lang-btn" href="/tools/dim-weight/" data-lang="en" hreflang="en">🇺🇸 en</a><a class="lang-btn" href="/tools/dim-weight/ko/" data-lang="ko" hreflang="ko">🇰🇷 ko</a><a class="lang-btn active" href="/tools/dim-weight/zh/" data-lang="zh" hreflang="zh">🇨🇳 zh</a><a class="lang-btn" href="/tools/dim-weight/es/" data-lang="es" hreflang="es">🇪🇸 es</a></div>
+  </div>
+</header>
+  <main>
+    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="card" id="inputCard">
+      <h1 class="tool-h">体积重量计算器</h1>
+      <p class="tool-sub">输入快递货物的尺寸和重量，即可计算体积重量（材积重量）以及承运商实际收取的计费重量。</p>
+      <div class="form">
+        <div class="field"><label>单位</label>
+          <select id="unitSel" onchange="onUnit()">
+            <option value="imp">in / lb (英制)</option>
+            <option value="met">cm / kg (公制)</option>
+          </select></div>
+        <div class="field field-wide"><label>箱子尺寸 (L × W × H)</label>
+          <div class="dims"><input type="number" id="inL" value="12" oninput="calc()"><span>×</span>
+          <input type="number" id="inW" value="10" oninput="calc()"><span>×</span>
+          <input type="number" id="inH" value="8" oninput="calc()"><span class="u" id="uLen">in</span></div></div>
+        <div class="field"><label>实际重量</label>
+          <div class="one"><input type="number" id="inWt" value="5" oninput="calc()"><span class="u" id="uWt">lb</span></div></div>
+        <div class="field"><label>承运商 / 体积系数</label>
+          <select id="carrierSel" onchange="calc()"></select></div>
+        <div class="field"><label>运费费率（可选）</label>
+          <div class="one"><select id="curSel" onchange="calc()" style="width:auto">
+            <option value="$">$</option><option value="€">€</option><option value="₩">₩</option><option value="¥">¥</option></select>
+          <input type="number" id="inRate" value="" placeholder="—" step="0.01" oninput="calc()"><span class="u" id="uRate">/lb</span></div></div>
+      </div>
+    </div>
+    <div class="card" id="result">
+      <div class="print-header">体积重量报告 / DIM WEIGHT REPORT<span class="d" id="prDate"></span></div>
+      <div class="dash">
+        <div class="dash-title"><span>体积重量计算结果</span><span class="dash-tag" id="dashTag"></span></div>
+        <div class="kpis" id="kpis"></div>
+      </div>
+      <p class="cost-note" id="costNote" style="display:none">仅为预估金额，实际费用会因配送区域、服务等级、燃油附加费及运输合同而有所不同。</p>
+      <div class="size-warn" id="sizeWarn"></div><div class="cmp"><div class="cmp-h">承运商比较（计费重量）</div><table class="cmp-t"><thead><tr><th>·</th><th>体积重量</th><th>计费重量</th></tr></thead><tbody id="cmpBody"></tbody></table></div>
+      
+      <div class="viz">
+        <div class="viz-h">3D视图 · 货物尺寸</div>
+        <svg id="boxSvg" viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="legend"><span><b></b>货物</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-pdf" onclick="savePdf()">💾 保存PDF</button>
+        <a class="btn btn-rel related" href="/tools/cbm/zh/">CBM 计算器 →</a>
+      </div>
+    </div>
+    <section class="seo">
+      <h2>什么是体积重量（材积重量）？</h2>
+      <p>承运商按实际重量和体积重量中的较大者收费，因为又大又轻的箱子占用的空间比又重又小的箱子多。体积重量是箱子体积除以承运商设定的体积系数：体积重量 = (L × W × H) ÷ 系数。英寸·磅通常用139；厘米·千克的国际空运用5000或6000。计费重量是实际重量和体积重量中较大者向上取整。</p>
+      <h2>各承运商常用体积系数</h2>
+      <table><thead><tr><th>承运商 / 服务</th><th>系数</th><th>单位</th></tr></thead><tbody><tr><td>UPS / FedEx (美国零售)</td><td>139</td><td>in³ / lb</td></tr><tr><td>USPS (&gt;1 立方英尺)</td><td>166</td><td>in³ / lb</td></tr><tr><td>DHL Express</td><td>139</td><td>in³ / lb</td></tr><tr><td>IATA 空运标准</td><td>6000</td><td>cm³ / kg</td></tr><tr><td>常见快递 (公制)</td><td>5000</td><td>cm³ / kg</td></tr></tbody></table>
+      <h2>常见问题</h2>
+      <details open><summary>体积重量怎么计算？</summary><p>长 × 宽 × 高得出体积，再除以承运商体积系数。12 × 10 × 8 in 箱子按系数139：960 ÷ 139 = 6.9 lb 体积重量。</p></details><details><summary>计费重量是什么？</summary><p>实际收费的重量：实际重量和体积重量中较大者，向上取整到磅或千克。箱子相对尺寸偏轻时，通常按体积重量计费。</p></details><details><summary>该用哪个体积系数？</summary><p>取决于承运商和合同。美国国内 UPS·FedEx 常用139(in³/lb)，USPS 超过1立方英尺用166。国际空运通常用5000或6000(cm³/kg)。请以运输合同为准。</p></details><details><summary>箱子要按外径量吗？</summary><p>是的。始终测量打包后纸箱的外径（含鼓起部分），那才是货物在车辆中占用的空间。</p></details><details><summary>这和CBM一样吗？</summary><p>不一样。体积重量用于快递·速运，把体积换算成计费重量；CBM是海运·空运用的原始体积（立方米）。集装箱·拼箱货请用CBM计算器。</p></details>
+    </section>
+    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+  </main>
+  <footer>
+    <a href="/about/">关于</a> · <a href="/privacy/">隐私政策</a> · <a href="/contact/">联系我们</a>
+    <div style="margin-top:6px">© 2026 CubeFreight. All rights reserved.</div>
+  </footer>
+  <script>
+    const TOOL = "dim";
+    const T = {"dashTitle": "体积重量计算结果", "kVol": "体积", "kDim": "体积重量", "kAct": "实际重量", "kBill": "计费重量", "kFactor": "体积系数", "govDim": "按体积重量计费", "govAct": "按实际重量计费", "kCost": "预估费用", "costEnterRate": "请在上方输入费率", "legendBox": "货物", "reportTitle": "体积重量报告 / DIM WEIGHT REPORT", "dateLabel": "生成时间", "uCartons": "件", "szStandard": "标准尺寸 — 预计无体积附加费。", "szAH": "可能产生额外操作费（Additional Handling，超大或超重货物）。", "szLarge": "大件货物（Large Package）附加费 — 按最低计费重量收费。", "szMax": "超过承运商最大规格 — 可能被拒收。", "lgLabel": "长度 + 周长", "sizeNote": "附加费阈值依据美国地面运输公示规则，会定期变动 — 请与承运商确认。"};
+    const CARRIERS_IMP = [["UPS · FedEx (139)", "139"], ["USPS (166)", "166"], ["DHL (139)", "139"]];
+    const CARRIERS_MET = [["IATA 空运 (6000)", "6000"], ["速运 (5000)", "5000"], ["经济 (4000)", "4000"]];
+    const $ = id => document.getElementById(id);
+    const num = id => { const e=$(id); return e ? (parseFloat(e.value)||0) : 0; };
+    function fmt(n, dgt) { if(!isFinite(n)) return '—';
+      return (Math.round(n*Math.pow(10,dgt))/Math.pow(10,dgt)).toLocaleString('en-US', {maximumFractionDigits:dgt}); }
+    function fill(s, o) { return String(s).replace(/\{(\w+)\}/g, function(_, k){ return o[k]; }); }
+
+    function drawBox(L, W, H, accent) {
+      const svg = $('boxSvg'); if(!svg) return;
+      if(!(L>0 && W>0 && H>0)) { svg.innerHTML=''; return; }
+      const md = Math.max(L,W,H), bx=L/md, by=H/md, bz=W/md, S=125, cx=300, cy=250;
+      const c=Math.cos(Math.PI/6), s=Math.sin(Math.PI/6);
+      const P=(x,y,z)=>({x:cx+(x-z)*c*S, y:cy+((x+z)*s - y)*S});
+      const D=P(0,0,bz),C=P(bx,0,bz),B=P(bx,0,0),E=P(0,by,0),F=P(bx,by,0),G=P(bx,by,bz),Hh=P(0,by,bz);
+      const pol=(pts,f,st)=>`<polygon points="${pts.map(p=>p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ')}" fill="${f}" stroke="${st}" stroke-width="1"/>`;
+      const gc=P(bx/2,0,bz/2);
+      let o=`<ellipse cx="${gc.x.toFixed(1)}" cy="${(gc.y+8).toFixed(1)}" rx="${(bx*S*0.62).toFixed(1)}" ry="${(bx*S*0.2).toFixed(1)}" fill="#000" opacity="0.10"/>`;
+      o+=pol([D,C,G,Hh],'#D2A06A','#A06E3F');
+      o+=pol([B,C,G,F],'#B88650','#8A6238');
+      o+=pol([E,F,G,Hh],'#E8C49B','#C99B68');
+      const mid=(a,b)=>({x:(a.x+b.x)/2,y:(a.y+b.y)/2});
+      function chip(p,txt){ const w=txt.length*7.2+14;
+        return `<g><rect x="${(p.x-w/2).toFixed(1)}" y="${(p.y-10).toFixed(1)}" width="${w.toFixed(1)}" height="20" rx="4" fill="#fff" stroke="${accent}" stroke-width="1.4"/><text x="${p.x.toFixed(1)}" y="${(p.y+4).toFixed(1)}" text-anchor="middle" font-family="monospace" font-size="11.5" font-weight="700" fill="#0F172A">${txt}</text></g>`; }
+      const U = window.__unit || '';
+      o+=chip(mid(E,F), 'L '+fmt(L,fmtDigits())+U);
+      o+=chip(mid(F,G), 'W '+fmt(W,fmtDigits())+U);
+      o+=chip(mid(C,G), 'H '+fmt(H,fmtDigits())+U);
+      svg.innerHTML=o;
+    }
+    function fmtDigits(){ return (window.__unit==='m'||window.__unit==='in')?1:0; }
+
+    function renderKpis(list){
+      $('kpis').innerHTML = list.map(k=>
+        `<div class="kpi${k.acc?' acc':''}"><div class="l">${k.l}</div><div class="v">${k.v}${k.u?' <span>'+k.u+'</span>':''}</div>${k.s?'<div class="s">'+k.s+'</div>':''}</div>`
+      ).join('');
+    }
+
+    function onUnit(){ // DIM only: refill carriers + unit labels
+      const imp = $('unitSel').value==='imp';
+      const list = imp?CARRIERS_IMP:CARRIERS_MET;
+      $('carrierSel').innerHTML = list.map(c=>`<option value="${c[1]}">${c[0]}</option>`).join('');
+      if($('uLen')) $('uLen').textContent = imp?'in':'cm';
+      if($('uWt')) $('uWt').textContent = imp?'lb':'kg';
+      if($('uRate')) $('uRate').textContent = imp?'/lb':'/kg';
+      calc();
+    }
+
+    function calc(){
+      const L=num('inL'), W=num('inW'), H=num('inH');
+      if(!(L>0&&W>0&&H>0)){ $('result').style.display='none'; return; }
+      $('result').style.display='';
+      let kpis=[];
+      if(TOOL==='dim'){
+        const imp = $('unitSel').value==='imp';
+        window.__unit = imp?'in':'cm';
+        const wt=num('inWt'), factor=parseFloat($('carrierSel').value)||139;
+        const wu=imp?'lb':'kg', vu=imp?'in³':'cm³';
+        const vol=L*W*H, dimW=vol/factor, bill=Math.max(wt,dimW), gov=dimW>=wt?'dim':'act';
+        const rate=num('inRate'), cur=($('curSel')||{value:'$'}).value;
+        const cost=bill*rate;
+        kpis=[
+          {l:T.kVol, v:fmt(vol,0), u:vu},
+          {l:T.kDim, v:fmt(dimW,1), u:wu},
+          {l:T.kAct, v: wt>0?fmt(wt,1):'—', u: wt>0?wu:''},
+          {l:T.kBill, v:fmt(bill,1), u:wu, acc:true, s: gov==='dim'?T.govDim:T.govAct},
+          {l:T.kFactor, v:fmt(factor,0), u: imp?'in³/lb':'cm³/kg'},
+          {l:T.kCost, v: rate>0?cur+fmt(cost,2):'—', u:'', s: rate>0?'':T.costEnterRate},
+        ];
+        $('dashTag').textContent = imp?'IMPERIAL':'METRIC';
+        var cn=$('costNote'); if(cn) cn.style.display = rate>0?'':'none';
+
+        // (1) oversize / additional-handling classification (length + girth)
+        const dd=[L,W,H].slice().sort((a,b)=>b-a);
+        const longest=dd[0], second=dd[1], girth=2*(dd[1]+dd[2]), lg=longest+girth;
+        const TH = imp ? {aL:48,a2:30,aG:105,aW:50,lg:130,mG:165,mL:108,u:'in'}
+                       : {aL:122,a2:76,aG:266,aW:22.7,lg:330,mG:419,mL:274,u:'cm'};
+        let lvl, msg;
+        if(longest>TH.mL || lg>TH.mG){ lvl='red'; msg=T.szMax; }
+        else if(lg>TH.lg){ lvl='amber'; msg=T.szLarge; }
+        else if(longest>TH.aL||second>TH.a2||lg>TH.aG||(wt>0&&wt>TH.aW)){ lvl='amber'; msg=T.szAH; }
+        else { lvl='green'; msg=T.szStandard; }
+        const sw=$('sizeWarn');
+        if(sw){ sw.className='size-warn '+lvl;
+          sw.innerHTML='<b>'+msg+'</b> <span class="n">('+T.lgLabel+': '+fmt(lg,fmtDigits())+' '+TH.u+')</span><div class="n">'+T.sizeNote+'</div>'; }
+
+        // (2) carrier comparison — billable weight at each standard divisor
+        const CMP = imp ? [['UPS·FedEx·DHL',139],['USPS',166]]
+                        : [['Courier',5000],['IATA Air',6000],['Economy',4000]];
+        const cb=$('cmpBody');
+        if(cb){ cb.innerHTML = CMP.map(function(c){
+          const dw=vol/c[1], bl=Math.max(wt,dw);
+          return '<tr><td>'+c[0]+' ('+c[1]+')</td><td>'+fmt(dw,1)+' '+wu+'</td><td>'+fmt(bl,1)+' '+wu+'</td></tr>';
+        }).join(''); }
+      } else {
+        const u=$('unitSel').value; window.__unit=u;
+        const toM={cm:0.01, mm:0.001, m:1, in:0.0254}[u];
+        const qty=Math.max(1, parseInt($('inQty').value)||1), wt=num('inWt');
+        const per=(L*toM)*(W*toM)*(H*toM), tot=per*qty, air=tot*167, cft=tot*35.3147;
+        const airChg=Math.max(wt>0?(wt*qty):0, air);
+        const oceanWM=Math.max(tot, wt>0?(wt*qty)/1000:0);
+        const p20=per>0?Math.floor(28/per):0, p40=per>0?Math.floor(58/per):0;
+        const mode=($('freightMode')||{value:'ocean'}).value, rate=num('inRate'), cur=($('curSel')||{value:'$'}).value;
+        const cost = mode==='ocean' ? oceanWM*rate : airChg*rate;
+        kpis=[
+          {l:T.kPer, v:fmt(per,4), u:'m³'},
+          {l:T.kQty, v:fmt(qty,0), u:T.uCartons},
+          {l:T.kTotal, v:fmt(tot,3), u:'m³', acc:true, s: fmt(cft,1)+' '+T.cftUnit},
+          {l:T.kAir, v:fmt(airChg,1), u:'kg'},
+          {l:T.kOcean, v:fmt(oceanWM,3), u:'W/M'},
+          {l:T.kCost, v: rate>0?cur+fmt(cost,2):'—', u:'', s: rate>0?'':T.costEnterRate},
+        ];
+        $('dashTag').textContent = u.toUpperCase();
+        var fn=$('fitNote'); if(fn) fn.innerHTML = fill(T.fitNote, {a:p20, b:p40});
+        var cn2=$('costNote'); if(cn2) cn2.style.display = rate>0?'':'none';
+      }
+      renderKpis(kpis);
+      drawBox(L,W,H, "#7C3AED");
+    }
+
+    function savePdf(){
+      const now=new Date();
+      const p=n=>String(n).padStart(2,'0');
+      $('prDate').textContent = T.dateLabel+': '+now.getFullYear()+'-'+p(now.getMonth()+1)+'-'+p(now.getDate())+' '+p(now.getHours())+':'+p(now.getMinutes());
+      window.print();
+    }
+
+    if(TOOL==='dim') onUnit(); else calc();
+  </script>
+</body>
+</html>

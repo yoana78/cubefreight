@@ -65,8 +65,9 @@
     .hero { text-align: center; padding: 52px 0 34px; }
     .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; }
     .hero p { margin-top: 12px; font-size: 15.5px; color: var(--ink-dim); max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.65; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
     .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--acc);
       border-radius: 14px; padding: 26px 26px 22px; text-decoration: none; color: var(--ink);
       display: flex; flex-direction: column; gap: 12px; transition: transform .15s, box-shadow .15s; }
@@ -153,6 +154,42 @@
             "name": "LTL 3D计算器",
             "url": "https://cubefreight.pages.dev/ltl/",
             "description": "按经典等级表和2025年13-sub等级表估算NMFC密度等级，支持多品项托盘化与卡车装载预览。（英文/韩文）",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "WebApplication",
+            "name": "体积重量计算器",
+            "url": "https://cubefreight.pages.dev/tools/dim-weight/zh/",
+            "description": "计算快递·速运货物的体积重量（材积重量）与计费重量，内置UPS·FedEx·DHL·USPS体积系数（dim factor）。",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "WebApplication",
+            "name": "CBM 计算器",
+            "url": "https://cubefreight.pages.dev/tools/cbm/zh/",
+            "description": "将纸箱尺寸换算为海运·空运用的立方米（CBM），并计算计费重量以及20ft·40ft集装箱可装数量。",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "All",
             "isAccessibleForFree": true,
@@ -285,6 +322,30 @@
         <h2>LTL 3D计算器</h2>
         <p>按经典等级表和2025年13-sub等级表估算NMFC密度等级，支持多品项托盘化与卡车装载预览。（英文/韩文）</p>
         <div class="chips"><span class="chip">NMFC 2025</span><span class="chip">批量模式</span><span class="chip">卡车3D视图</span></div>
+        <span class="cta">打开计算器 →</span>
+      </a>
+      <a class="card" href="/tools/dim-weight/zh/" style="--acc:#7C3AED">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="46,12 72,26 46,40 20,26" fill="#C4B5FD"/>
+<polygon points="20,26 46,40 46,66 20,52" fill="#6D28D9"/>
+<polygon points="46,40 72,26 72,52 46,66" fill="#7C3AED"/>
+<polygon points="46,12 51,14.7 46,17.4 41,14.7" fill="#EDE9FE"/>
+<path d="M83 30 v20 M83 30 l-4 5 M83 30 l4 5 M83 50 l-4 -5 M83 50 l4 -5" stroke="#7C3AED" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg></div>
+        <h2>体积重量计算器</h2>
+        <p>计算快递·速运货物的体积重量（材积重量）与计费重量，内置UPS·FedEx·DHL·USPS体积系数（dim factor）。</p>
+        <div class="chips"><span class="chip">快递 · 速运</span><span class="chip">UPS/FedEx/DHL</span><span class="chip">PDF报告</span></div>
+        <span class="cta">打开计算器 →</span>
+      </a>
+      <a class="card" href="/tools/cbm/zh/" style="--acc:#0D9488">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="44,12 70,26 44,40 18,26" fill="#5EEAD4"/>
+<polygon points="18,26 44,40 44,66 18,52" fill="#0F766E"/>
+<polygon points="44,40 70,26 70,52 44,66" fill="#0D9488"/>
+<path d="M80 24 v30 M80 24 l-4 5 M80 24 l4 5 M80 54 l-4 -5 M80 54 l4 -5" stroke="#0D9488" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<text x="59" y="20" font-family="monospace" font-size="11" font-weight="700" fill="#0F766E">m³</text></svg></div>
+        <h2>CBM 计算器</h2>
+        <p>将纸箱尺寸换算为海运·空运用的立方米（CBM），并计算计费重量以及20ft·40ft集装箱可装数量。</p>
+        <div class="chips"><span class="chip">海运 · 空运</span><span class="chip">集装箱装载</span><span class="chip">PDF报告</span></div>
         <span class="cta">打开计算器 →</span>
       </a>
       <div class="card card-pro" style="--acc:#64748B">

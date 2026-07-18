@@ -65,8 +65,9 @@
     .hero { text-align: center; padding: 52px 0 34px; }
     .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; }
     .hero p { margin-top: 12px; font-size: 15.5px; color: var(--ink-dim); max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.65; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 26px; } }
     .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--acc);
       border-radius: 14px; padding: 26px 26px 22px; text-decoration: none; color: var(--ink);
       display: flex; flex-direction: column; gap: 12px; transition: transform .15s, box-shadow .15s; }
@@ -153,6 +154,42 @@
             "name": "LTL 3D 계산기",
             "url": "https://cubefreight.pages.dev/ltl/ko/",
             "description": "기존 스케일과 2025년 13-sub 스케일 양쪽으로 NMFC 밀도 클래스를 추정하고, 다품목 팔레타이징과 트럭 적재 미리보기를 지원합니다.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "WebApplication",
+            "name": "부피무게 계산기",
+            "url": "https://cubefreight.pages.dev/tools/dim-weight/ko/",
+            "description": "택배·특송 화물의 부피무게(용적중량)와 청구무게를 계산합니다. UPS·FedEx·DHL·USPS 부피계수(dim factor)가 내장되어 있습니다.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "WebApplication",
+            "name": "CBM 계산기",
+            "url": "https://cubefreight.pages.dev/tools/cbm/ko/",
+            "description": "카톤 치수를 해상·항공 운송용 세제곱미터(CBM)로 환산하고, 청구중량과 20ft·40ft 컨테이너에 몇 개 들어가는지 계산합니다.",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "All",
             "isAccessibleForFree": true,
@@ -285,6 +322,30 @@
         <h2>LTL 3D 계산기</h2>
         <p>기존 스케일과 2025년 13-sub 스케일 양쪽으로 NMFC 밀도 클래스를 추정하고, 다품목 팔레타이징과 트럭 적재 미리보기를 지원합니다.</p>
         <div class="chips"><span class="chip">NMFC 2025</span><span class="chip">배치 모드</span><span class="chip">트럭 3D 뷰</span></div>
+        <span class="cta">계산기 열기 →</span>
+      </a>
+      <a class="card" href="/tools/dim-weight/ko/" style="--acc:#7C3AED">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="46,12 72,26 46,40 20,26" fill="#C4B5FD"/>
+<polygon points="20,26 46,40 46,66 20,52" fill="#6D28D9"/>
+<polygon points="46,40 72,26 72,52 46,66" fill="#7C3AED"/>
+<polygon points="46,12 51,14.7 46,17.4 41,14.7" fill="#EDE9FE"/>
+<path d="M83 30 v20 M83 30 l-4 5 M83 30 l4 5 M83 50 l-4 -5 M83 50 l4 -5" stroke="#7C3AED" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg></div>
+        <h2>부피무게 계산기</h2>
+        <p>택배·특송 화물의 부피무게(용적중량)와 청구무게를 계산합니다. UPS·FedEx·DHL·USPS 부피계수(dim factor)가 내장되어 있습니다.</p>
+        <div class="chips"><span class="chip">택배 · 특송</span><span class="chip">UPS/FedEx/DHL</span><span class="chip">PDF 보고서</span></div>
+        <span class="cta">계산기 열기 →</span>
+      </a>
+      <a class="card" href="/tools/cbm/ko/" style="--acc:#0D9488">
+        <div class="card-icon"><svg viewBox="0 0 96 72" xmlns="http://www.w3.org/2000/svg">
+<polygon points="44,12 70,26 44,40 18,26" fill="#5EEAD4"/>
+<polygon points="18,26 44,40 44,66 18,52" fill="#0F766E"/>
+<polygon points="44,40 70,26 70,52 44,66" fill="#0D9488"/>
+<path d="M80 24 v30 M80 24 l-4 5 M80 24 l4 5 M80 54 l-4 -5 M80 54 l4 -5" stroke="#0D9488" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<text x="59" y="20" font-family="monospace" font-size="11" font-weight="700" fill="#0F766E">m³</text></svg></div>
+        <h2>CBM 계산기</h2>
+        <p>카톤 치수를 해상·항공 운송용 세제곱미터(CBM)로 환산하고, 청구중량과 20ft·40ft 컨테이너에 몇 개 들어가는지 계산합니다.</p>
+        <div class="chips"><span class="chip">해상 · 항공</span><span class="chip">컨테이너 적입</span><span class="chip">PDF 보고서</span></div>
         <span class="cta">계산기 열기 →</span>
       </a>
       <div class="card card-pro" style="--acc:#64748B">
