@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About &mdash; CubeFreight</title>
-  <meta name="description" content="What CubeFreight is and who runs it.">
+  <meta name="description" content="About CubeFreight: what the five free carton, pallet, freight class, DIM weight and CBM calculators do, the industry standards behind them, and who builds them.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://cubefreight.pages.dev/about/">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -69,18 +69,54 @@
   <main>
     <h1>About</h1>
     
-    <p>CubeFreight is a suite of three free, browser-based logistics calculators: the
-<a href="/carton/">Carton 3D Calc</a> designs a shipping carton around your product and draws the
-RSC dieline, the <a href="/pallet/">Pallet 3D Calc</a> finds the arrangement that loads the most
-cartons on a pallet and visualizes it in 3D, and the <a href="/ltl/">LTL 3D Calc</a> estimates the
-NMFC density-based freight class with a truck loading preview. Every calculation runs locally in
-your browser &mdash; no installation, no account, no upload.</p>
-<p>The site is built and maintained independently by a developer focused on free, practical
-logistics and packaging tools. It is not affiliated with NMFTA, any carrier, or any pallet or
-carton manufacturer. A desktop-grade Pro version (mixed-SKU palletizing, double stacking, brick
-patterns, bulk exports) is in development; the free web calculators will stay free.</p>
-<p>If you have questions, feedback, or found a calculation that looks wrong, see the
-<a href="/contact/">Contact</a> page.</p>
+    <p>CubeFreight is a suite of five free, browser-based logistics calculators built around one
+idea: the decisions that quietly cost shippers the most money &mdash; the size of a carton, how
+it stacks, how a carrier converts space into a bill &mdash; are all geometry problems that should
+be easy to check before the freight invoice arrives.</p>
+
+<h2>The calculators</h2>
+<p><a href="/carton/">Carton 3D Calc</a> designs a shipping carton around your product, accounts
+for board thickness and void fill, draws the RSC dieline, and searches arrangements to find the
+carton that loads the most units on a pallet. <a href="/pallet/">Pallet 3D Calc</a> takes a fixed
+carton and pallet and finds the pattern that fits the most cartons, comparing interlocked against
+column stacking in 3D with a one-page loading report. <a href="/ltl/">LTL 3D Calc</a> estimates
+the NMFC density-based freight class on both the classic and the 2025 13-sub scale, palletizes
+multi-item shipments, and previews truck loading.
+<a href="/tools/dim-weight/">DIM Weight Calc</a> converts parcel dimensions into the billable
+weight couriers actually charge, flags oversize and additional-handling thresholds, and compares
+carrier divisors side by side. <a href="/tools/cbm/">CBM Calc</a> computes cubic metres for ocean
+and air freight, applies the weight-or-measure rule, and converts to cubic feet.</p>
+
+<h2>How the numbers are produced</h2>
+<p>Every calculation runs locally in your browser in JavaScript. Nothing is uploaded, no account
+is required, and no dimensions or weights leave your device. The tools are deterministic: the same
+inputs always produce the same result, and each result page shows the intermediate values
+(volume, density, divisor, utilisation) so you can check the arithmetic rather than trust a
+black box.</p>
+<p>The reference data behind the tools comes from published industry standards: NMFC density
+brackets and the 2025 13-sub classification scale for freight class, ISO and GMA pallet
+footprints (1200&times;1000, 1200&times;800, 1219&times;1016 mm) for palletizing, published US
+ground dimensional divisors such as 139 and 166 for parcel, and the IATA volumetric ratios of
+5000 and 6000 cm&sup3;/kg for air freight. Where a figure changes periodically &mdash; surcharge
+thresholds and divisors in particular &mdash; the tools say so on the page and recommend
+confirming against your own carrier contract.</p>
+
+<h2>What these tools are not</h2>
+<p>The calculators are planning aids, not quotations. A freight class estimate is not a
+classification ruling, and a cost estimate is not a rate quote: actual charges depend on your
+carrier agreement, lane, service level, fuel surcharge, accessorials and destination fees. For
+binding classifications consult the NMFTA publication or your carrier; for binding rates, your
+carrier or broker.</p>
+
+<h2>Who runs it</h2>
+<p>CubeFreight is built and maintained independently by a developer working on free, practical
+logistics and packaging tools. It is not affiliated with the NMFTA, any carrier, freight broker,
+or any pallet or carton manufacturer, and the calculators do not favour any provider. A
+desktop-grade Pro version (mixed-SKU palletizing, double stacking, brick patterns, bulk exports)
+is in development; the free web calculators will stay free.</p>
+<p>If you have questions, feedback, or found a calculation that looks wrong, the
+<a href="/contact/">Contact</a> page has the address &mdash; corrections are genuinely welcome and
+reported errors get fixed.</p>
   </main>
   <footer>
     <p><a href="/about/">About</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/contact/">Contact</a></p>

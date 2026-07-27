@@ -58,9 +58,10 @@
     * { box-sizing:border-box; margin:0; }
     body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
     main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
-    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
-      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
-      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    /* Ad slot: no visible chrome. Auto ads inject the unit; an unfilled
+       slot collapses instead of showing a placeholder box. */
+    .ad { margin:20px 0; text-align:center; }
+    .ad:empty { display:none; }
     .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
     .tool-h { font-size:26px; font-weight:700; }
     .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
@@ -120,6 +121,14 @@
     .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
     .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
     .seo details p { margin:9px 0 2px; }
+    .seo ol.steps { margin:10px 0 4px; padding-left:20px; }
+    .seo ol.steps li { margin-bottom:13px; font-size:14.5px; line-height:1.7; }
+    .seo ol.steps li b { display:block; color:var(--ink); margin-bottom:3px; }
+    .seo ol.steps li span { color:var(--ink-dim); }
+    .seo .note { border-left:3px solid var(--acc); background:var(--panel); border-radius:0 8px 8px 0;
+      padding:11px 14px; margin-bottom:10px; }
+    .seo .note b { font-size:14.5px; }
+    .seo .note p { margin:4px 0 0; }
     footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
       font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
     footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
@@ -220,7 +229,7 @@
   </div>
 </header>
   <main>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
     <div class="card" id="inputCard">
       <h1 class="tool-h">CBM 计算器</h1>
       <p class="tool-sub">将纸箱尺寸换算为海运·空运用的立方米（CBM），并计算计费重量与集装箱可装数量。</p>
@@ -271,12 +280,18 @@
     <section class="seo">
       <h2>什么是CBM（立方米）？</h2>
       <p>CBM是货物以立方米表示的体积，是海运拼箱（LCL）和空运计价的基础。将各尺寸换算为米后相乘：CBM = (L × W × H) [米]。40 × 30 × 25 cm 纸箱为 0.40 × 0.30 × 0.25 = 0.03 CBM。乘以箱数即为总量。海运LCL按重量或体积（W/M）计费，取1吨与1 CBM中较大者。空运按每CBM约167 kg的体积重量计费。</p>
+      <h2>逐步计算 CBM</h2>
+      <ol class="steps"><li><b>将所有尺寸换算为米</b><span>CBM 以米为单位，因此以厘米测量的纸箱须先除以 100。40 × 30 × 25 厘米的纸箱即为 0.40 × 0.30 × 0.25 米。若以英寸测量，则将每个数值除以 39.37。</span></li><li><b>三边相乘</b><span>0.40 × 0.30 × 0.25 = 每箱 0.03 CBM。这是一个纸箱所占的体积，且始终以封装后箱子的外尺寸为准，绝非内腔尺寸。</span></li><li><b>乘以纸箱数量</b><span>100 箱 × 0.03 CBM = 合计 3 CBM。混装货物应按纸箱类型分别计算后相加，切勿对不同箱型的尺寸取平均值。</span></li><li><b>比较体积与重量</b><span>海运拼箱按 CBM 与公吨数中较大者计价。3 CBM、重 1.2 公吨的货物按 3 计费吨结算，因为体积数值大于重量数值。</span></li><li><b>若已打托，需计入托盘空间</b><span>纸箱码放到托盘上后，计费体积为托盘底面积乘以总堆码高度，而非各纸箱体积之和。托盘本身以及任何超出部分都计入计费体积。</span></li></ol>
       <h2>集装箱容积参考</h2>
       <table><thead><tr><th>集装箱</th><th>内部CBM</th><th>可用CBM</th></tr></thead><tbody><tr><td>20ft 标准</td><td>33 ㎥</td><td>~28 ㎥</td></tr><tr><td>40ft 标准</td><td>67 ㎥</td><td>~58 ㎥</td></tr><tr><td>40ft 高柜</td><td>76 ㎥</td><td>~68 ㎥</td></tr><tr><td>空运（每CBM）</td><td>—</td><td>167 kg 体积重</td></tr></tbody></table>
+      <h2>理解重量或体积（W/M）</h2>
+      <div class='note'><b>一个计费吨取较大者</b><p>海运拼箱按计费吨结算：一立方米与一公吨之中取较大者。轻抛货按体积计费，瓷砖、机械等高密度货物则按重量计费。</p></div><div class='note'><b>空运采用不同比率</b><p>空运以约每立方米 167 公斤把体积换算为重量，即 IATA 6000 立方厘米/公斤规则按 CBM 表述的结果。1 CBM 但不足 167 公斤的货物按 167 公斤计费。</p></div><div class='note'><b>知道何时整柜更划算</b><p>拼箱成本随体积线性上升，因此超过约 13 至 15 CBM 后，计入操作费和目的港费用，整柜 20 尺往往比按立方米付费更便宜。</p></div><div class='note'><b>美国单证仍使用立方英尺</b><p>1 立方米等于 35.31 立方英尺。美国国内单证和部分航空公司以 CFT 报价，因此同一票货物在一份单证上是 3 CBM，在另一份上则是 105.9 CFT。</p></div>
+      <h2>常见错误</h2>
+      <div class='note'><b>使用内尺寸</b><p>CBM 必须以纸箱外尺寸计算。内尺寸描述的是产品容腔，会低估货物在船上实际占用的空间。</p></div><div class='note'><b>计算中途混用单位</b><p>厘米与米混乘会得出看似合理却相差百倍以上的数值。相乘前请全部换算为米。</p></div><div class='note'><b>忘记托盘</b><p>1.2 × 1.0 米托盘堆高至 1.5 米即为 1.8 CBM 的计费空间，即使其上纸箱合计仅 1.5 CBM。请注意堆码高度包含通常为 0.14 米的托盘本身。</p></div><div class='note'><b>假设永远按体积计费</b><p>高密度货物改按重量计费。务必两个数值都算：2 CBM 重 3 公吨的货物按 3 计费吨而非 2。</p></div><div class='note'><b>忽略堆码限制</b><p>标注为不可堆码的货物，按其在柜内所阻挡的全部高度收费，即使纸箱本身很矮，实际 CBM 也可能翻倍。</p></div>
       <h2>常见问题</h2>
       <details open><summary>CBM怎么计算？</summary><p>将长·宽·高换算为米后相乘。40 × 30 × 25 cm 纸箱为 0.40 × 0.30 × 0.25 = 0.03 CBM，100箱即3.0 CBM。</p></details><details><summary>海运LCL计费重量是什么？</summary><p>海运LCL按重量或体积（W/M）计费，取1吨（1000 kg）与1㎥中较大者。输入每箱重量后，计算器会同时显示两者，便于判断按哪个计费。</p></details><details><summary>空运体积重量怎么算？</summary><p>空运取实际重量与体积重量（每㎥约167 kg，IATA 1:6000规则）中较大者。3 CBM约为500 kg体积重量。</p></details><details><summary>集装箱能装多少箱？</summary><p>用可用集装箱容积除以每箱CBM。实务上20ft约28㎥、40ft约58㎥。纸箱无法完美填满，实际略少——精确排布请用托盘·纸箱计算器。</p></details><details><summary>该用内径还是外径？</summary><p>始终用外径。运费按纸箱占用的空间计算，因此楞厚和鼓起都计入CBM。</p></details>
     </section>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
   </main>
   <footer>
     <a href="/about/">关于</a> · <a href="/privacy/">隐私政策</a> · <a href="/contact/">联系我们</a>

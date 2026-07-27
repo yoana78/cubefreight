@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CubeFreight — 免费纸箱·托盘·货运等级计算器（3D）</title>
-  <meta name="description" content="三款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化，以及支持卡车装载预览的NMFC货运等级密度估算。无需安装或注册，完全免费。">
+  <meta name="description" content="五款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化、NMFC货运等级密度估算，以及体积重量与CBM计算。无需安装或注册，完全免费。">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://cubefreight.pages.dev/zh/">
   <link rel="alternate" hreflang="en" href="https://cubefreight.pages.dev/">
@@ -15,13 +15,13 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CubeFreight">
   <meta property="og:title" content="CubeFreight — 免费纸箱·托盘·货运等级计算器（3D）">
-  <meta property="og:description" content="三款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化，以及支持卡车装载预览的NMFC货运等级密度估算。无需安装或注册，完全免费。">
+  <meta property="og:description" content="五款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化、NMFC货运等级密度估算，以及体积重量与CBM计算。无需安装或注册，完全免费。">
   <meta property="og:url" content="https://cubefreight.pages.dev/zh/">
   <meta property="og:image" content="https://cubefreight.pages.dev/og-image.png">
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CubeFreight — 免费纸箱·托盘·货运等级计算器（3D）">
-  <meta name="twitter:description" content="三款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化，以及支持卡车装载预览的NMFC货运等级密度估算。无需安装或注册，完全免费。">
+  <meta name="twitter:description" content="五款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化、NMFC货运等级密度估算，以及体积重量与CBM计算。无需安装或注册，完全免费。">
   <meta name="twitter:image" content="https://cubefreight.pages.dev/og-image.png">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -88,6 +88,19 @@
     .seo details { border-bottom: 1px solid var(--line); padding: 12px 4px; }
     .seo summary { font-weight: 600; font-size: 14.5px; cursor: pointer; }
     .seo details p { margin: 10px 0 2px; }
+    .seo h2 + table { margin-bottom: 22px; }
+    .seo table.pick { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .seo table.pick th, .seo table.pick td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; }
+    .seo table.pick th { background: #F1F5F9; font-weight: 600; }
+    .seo table.pick td:first-child { color: var(--ink-dim); }
+    .seo table.pick td:last-child { font-weight: 600; white-space: nowrap; }
+    @media (max-width: 620px) {
+      .seo table.pick, .seo table.pick tbody, .seo table.pick tr, .seo table.pick td { display: block; width: 100%; }
+      .seo table.pick thead { display: none; }
+      .seo table.pick tr { margin-bottom: 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+      .seo table.pick td { border: none; }
+      .seo table.pick td:last-child { background: #F1F5F9; white-space: normal; }
+    }
     .faq-h { margin-top: 34px; }
     footer { text-align: center; padding: 26px 24px; border-top: 1px solid var(--line);
       color: var(--ink-faint); font-size: 11.5px; background: rgba(255,255,255,0.8); line-height: 1.7; }
@@ -104,7 +117,7 @@
       "name": "CubeFreight",
       "url": "https://cubefreight.pages.dev/zh/",
       "inLanguage": "zh",
-      "description": "三款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化，以及支持卡车装载预览的NMFC货运等级密度估算。无需安装或注册，完全免费。"
+      "description": "五款免费在线物流计算器：含RSC刀模的纸箱尺寸设计、3D托盘装载优化、NMFC货运等级密度估算，以及体积重量与CBM计算。无需安装或注册，完全免费。"
     },
     {
       "@type": "ItemList",
@@ -346,8 +359,12 @@
     </div>
     <section class="seo">
       <h2>CubeFreight是什么？</h2>
-      <p>CubeFreight是为包装工程师、仓储规划人员和LTL托运人打造的三款免费物流计算器。三个工具分别负责同一条物流链的各个环节：纸箱计算器围绕产品设计运输箱，托盘计算器寻找纸箱在托盘上的最佳堆叠方式，LTL计算器估算决定运费的NMFC货运等级。</p>
+      <p>CubeFreight是为包装工程师、仓储规划人员、电商卖家和LTL托运人打造的五款免费物流计算器。每个工具负责同一条物流链中的一个环节：纸箱计算器围绕产品设计运输箱，托盘计算器寻找纸箱在托盘上的最佳堆叠方式，LTL计算器估算决定运费的NMFC货运等级，体积重量与CBM计算器则把这些尺寸换算成快递、海运和空运实际计费的计费重量与体积。</p>
       <p>所有工具都是纯网页——尺寸数据不会离开您的浏览器，结果以交互式3D视图呈现，每个工具都能导出可直接交给仓库或承运商的PDF报告。</p>
+      <h2>您需要哪个计算器？</h2>
+      <table class="pick"><thead><tr><th>如果您的情况是</th><th>从这里开始</th></tr></thead><tbody><tr><td>有了产品，需要围绕它设计运输箱</td><td>纸箱 3D 计算器</td></tr><tr><td>纸箱已固定，想知道每托盘能装多少</td><td>托盘 3D 计算器</td></tr><tr><td>正在报价 LTL 运输，需要 NMFC 货运等级</td><td>LTL 3D 计算器</td></tr><tr><td>快递公司按高于实重的重量向您收费</td><td>体积重量计算器</td></tr><tr><td>正在订舱海运拼箱或空运，需要立方米数</td><td>CBM 计算器</td></tr></tbody></table>
+      <h2>各工具如何衔接</h2>
+      <p>运费在承运商报价之前就已注定。纸箱尺寸决定每托盘能装多少件；托盘码放方式决定影响货运等级的密度；同一组尺寸又决定包裹按实重还是按体积重量计费。箱子改动一厘米，这三个数字都会随之变化。按照设计纸箱、码放托盘、再核对等级与计费重量或立方米的顺序使用这些工具，就能在收到账单之前发现货物在哪里多花了钱，而不只是事后核对。</p>
       <h2 class="faq-h">常见问题</h2>
       <details open><summary>计算器真的免费吗？</summary><p>是的。三款计算器全部免费，无需账户、无试用限制、PDF导出无水印。网站由广告支持运营。</p></details><details><summary>应该从哪个计算器开始？</summary><p>按物流链顺序：如果还没确定箱型，从纸箱计算器开始——它还会显示每个候选箱型的托盘装载量。纸箱已定型的话，用托盘计算器最大化装载。在北美走LTL运输的话，把结果输入LTL计算器估算货运等级。</p></details><details><summary>我的数据会上传到服务器吗？</summary><p>不会。尺寸、重量、数量全部由浏览器内的JavaScript处理，您输入的任何内容都不会被上传或存储。</p></details><details><summary>支持哪些托盘标准？</summary><p>T11（1100×1100，韩日）、欧标EPAL（1200×800）、美标GMA（48×40英寸）、ISO工业（1200×1000）、澳标（1165×1165）以及完全自定义尺寸，支持毫米、厘米、英寸单位。</p></details><details><summary>货运等级估算有多准确？</summary><p>LTL计算器采用官方密度分界点（含2025年7月13-sub等级表），并按NMFC测量搬运单元的方式（含托盘）精确计算密度。但具有特殊堆存性、搬运性或责任属性的商品实际等级可能不同，请作为估算参考。</p></details><details><summary>什么时候用体积重量（DIM）计算器，什么时候用CBM计算器？</summary><p>快递·速运（UPS·FedEx·DHL）用体积重量计算器，承运商按实际重量与体积重量中较大者计费。海运·空运用CBM计算器，运费按立方米和计费重量计算。</p></details><details><summary>这些工具能估算运费吗？</summary><p>可以作为估算。输入你自己的费率（体积重量计算器按每磅/千克，CBM计算器按每CBM/千克），工具会乘以计费重量得出预估费用。实际费用会因区域、服务、附加费和运输合同而不同。</p></details><details><summary>Pro版会增加什么？</summary><p>面向日常生产的桌面级套件：混合SKU托盘化、双层堆叠、砖式堆叠、集装箱规划和批量导出。目前开发中——免费网页版将持续免费。</p></details>
     </section>

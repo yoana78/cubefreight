@@ -58,9 +58,10 @@
     * { box-sizing:border-box; margin:0; }
     body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
     main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
-    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
-      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
-      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    /* Ad slot: no visible chrome. Auto ads inject the unit; an unfilled
+       slot collapses instead of showing a placeholder box. */
+    .ad { margin:20px 0; text-align:center; }
+    .ad:empty { display:none; }
     .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
     .tool-h { font-size:26px; font-weight:700; }
     .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
@@ -120,6 +121,14 @@
     .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
     .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
     .seo details p { margin:9px 0 2px; }
+    .seo ol.steps { margin:10px 0 4px; padding-left:20px; }
+    .seo ol.steps li { margin-bottom:13px; font-size:14.5px; line-height:1.7; }
+    .seo ol.steps li b { display:block; color:var(--ink); margin-bottom:3px; }
+    .seo ol.steps li span { color:var(--ink-dim); }
+    .seo .note { border-left:3px solid var(--acc); background:var(--panel); border-radius:0 8px 8px 0;
+      padding:11px 14px; margin-bottom:10px; }
+    .seo .note b { font-size:14.5px; }
+    .seo .note p { margin:4px 0 0; }
     footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
       font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
     footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
@@ -220,7 +229,7 @@
   </div>
 </header>
   <main>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
     <div class="card" id="inputCard">
       <h1 class="tool-h">DIM Weight Calculator</h1>
       <p class="tool-sub">Enter your parcel dimensions and weight to get the dimensional (volumetric) weight and the billable weight your carrier charges.</p>
@@ -266,12 +275,18 @@
     <section class="seo">
       <h2>What is dimensional (DIM) weight?</h2>
       <p>Carriers charge parcels by whichever is greater — the actual weight or the dimensional weight — because a large, light box takes space a heavy small one does not. Dimensional weight is the box volume divided by a DIM divisor set by the carrier: DIM weight = (L × W × H) ÷ divisor. In inches and pounds the common divisor is 139; in centimetres and kilograms international air shipments use 5000 or 6000. The billable weight is the larger of the actual and dimensional weights, rounded up.</p>
+      <h2>How to calculate dimensional weight step by step</h2>
+      <ol class="steps"><li><b>Measure the packed carton</b><span>Measure length, width and height of the sealed box in its final shipping state. Include tape, bulging sides and any protruding handles. Carriers measure the box as it arrives at their hub, not as it was designed, and round each dimension up to the nearest whole inch or centimetre.</span></li><li><b>Multiply to get the volume</b><span>Length x width x height gives the cubic volume. A 12 x 10 x 8 in carton is 960 cubic inches. Keep the units consistent: never mix inches with centimetres inside one calculation.</span></li><li><b>Divide by the DIM divisor</b><span>Divide the volume by the divisor written into your carrier contract. 960 divided by 139 is 6.9 lb. A larger divisor produces a smaller dimensional weight, so a contract that moves you from 139 to 166 lowers the billable weight on every light, bulky parcel you ship.</span></li><li><b>Compare against the actual weight</b><span>Weigh the packed box. If the parcel weighs 4 lb but the dimensional weight is 6.9 lb, the carrier bills 7 lb. The higher number always wins, and most carriers round up to the next whole pound or half kilogram.</span></li><li><b>Check for size surcharges</b><span>Billable weight is not the whole invoice. Measure length plus girth - the longest side plus twice the width plus twice the height - and compare it against your carrier's additional handling and oversize thresholds. Those surcharges are billed on top of the weight charge.</span></li></ol>
       <h2>Common DIM Divisors by Carrier</h2>
       <table><thead><tr><th>Carrier / service</th><th>Divisor</th><th>Units</th></tr></thead><tbody><tr><td>UPS / FedEx (US retail)</td><td>139</td><td>in³ / lb</td></tr><tr><td>USPS (&gt;1 cu ft)</td><td>166</td><td>in³ / lb</td></tr><tr><td>DHL Express</td><td>139</td><td>in³ / lb</td></tr><tr><td>IATA air standard</td><td>6000</td><td>cm³ / kg</td></tr><tr><td>Common courier (metric)</td><td>5000</td><td>cm³ / kg</td></tr></tbody></table>
+      <h2>How to reduce dimensional weight charges</h2>
+      <div class='note'><b>Cut the empty space, not the protection</b><p>Dimensional weight punishes air. Reducing a 12 x 10 x 8 in box to 11 x 9 x 6 in drops the volume from 960 to 594 cubic inches and the dimensional weight from 6.9 lb to 4.3 lb - a 38% cut with no change to the product inside.</p></div><div class='note'><b>Right-size instead of standardising</b><p>One large stock box for everything is cheaper per box but more expensive per shipment. Carrying three or four carton sizes matched to your best-selling products usually pays for itself within a single season of freight invoices.</p></div><div class='note'><b>Watch the one-inch cliff</b><p>Because carriers round dimensions up, a box that measures 12.1 in is billed as 13 in. Trimming a fraction of an inch off the design can move an entire dimension down a whole unit and take the billable weight with it.</p></div><div class='note'><b>Negotiate the divisor, not just the rate</b><p>Shippers focus on discount percentages, but the DIM divisor changes the weight every parcel is billed at. Moving from 139 to 166 reduces dimensional weight by roughly 16% across the whole shipping profile.</p></div><div class='note'><b>Reconsider the packaging format</b><p>Flexible mailers and poly bags are measured differently from rigid cartons and for lightweight goods often fall outside dimensional weight rules altogether.</p></div>
+      <h2>Common mistakes</h2>
+      <div class='note'><b>Measuring the product instead of the box</b><p>Dimensional weight is based on the shipping carton including void fill and outer packaging. Measuring the bare product understates every estimate you make.</p></div><div class='note'><b>Ignoring the bulge</b><p>A tightly packed carton bows outward. Carriers measure the widest point, so a box designed at 10 in that bulges to 10.5 in is billed at 11 in.</p></div><div class='note'><b>Using one divisor for every service</b><p>Ground, express, international and postal services frequently use different divisors inside the same carrier. Check the divisor per service, not per carrier.</p></div><div class='note'><b>Forgetting the minimum billable weight</b><p>Oversize and large-package parcels are often billed at a minimum weight - commonly 90 lb - regardless of what the dimensional calculation produces.</p></div><div class='note'><b>Confusing dimensional weight with CBM</b><p>Dimensional weight converts volume into a chargeable weight for parcels. Ocean and air freight price on CBM, the actual volume in cubic metres. They are different systems and are not interchangeable.</p></div>
       <h2>Frequently Asked Questions</h2>
       <details open><summary>How is dimensional weight calculated?</summary><p>Multiply length × width × height to get the volume, then divide by the carrier's DIM divisor. For a 12 × 10 × 8 in box on divisor 139: 960 ÷ 139 = 6.9 lb dimensional weight.</p></details><details><summary>What is billable weight?</summary><p>The weight you are actually charged for: the greater of the actual weight and the dimensional weight, rounded up to the next pound or kilogram. If your box is light for its size, the dimensional weight usually governs.</p></details><details><summary>Which DIM divisor should I use?</summary><p>It depends on the carrier and contract. US domestic parcels from UPS and FedEx commonly use 139 (in³/lb); USPS uses 166 for packages over one cubic foot. International air freight typically uses 5000 or 6000 (cm³/kg). Always confirm the divisor in your carrier agreement.</p></details><details><summary>Does the box have to be the outer size?</summary><p>Yes. Always measure the outer dimensions of the packed carton, including any bulge, because that is the space the parcel occupies in the vehicle.</p></details><details><summary>Is this the same as CBM?</summary><p>No. DIM weight converts volume into a chargeable weight for parcel and courier shipments. CBM is the raw volume in cubic metres, used for ocean and air freight. Use the CBM calculator for container and LCL shipments.</p></details>
     </section>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
   </main>
   <footer>
     <a href="/about/">About</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/contact/">Contact</a>

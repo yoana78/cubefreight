@@ -58,9 +58,10 @@
     * { box-sizing:border-box; margin:0; }
     body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
     main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
-    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
-      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
-      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    /* Ad slot: no visible chrome. Auto ads inject the unit; an unfilled
+       slot collapses instead of showing a placeholder box. */
+    .ad { margin:20px 0; text-align:center; }
+    .ad:empty { display:none; }
     .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
     .tool-h { font-size:26px; font-weight:700; }
     .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
@@ -120,6 +121,14 @@
     .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
     .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
     .seo details p { margin:9px 0 2px; }
+    .seo ol.steps { margin:10px 0 4px; padding-left:20px; }
+    .seo ol.steps li { margin-bottom:13px; font-size:14.5px; line-height:1.7; }
+    .seo ol.steps li b { display:block; color:var(--ink); margin-bottom:3px; }
+    .seo ol.steps li span { color:var(--ink-dim); }
+    .seo .note { border-left:3px solid var(--acc); background:var(--panel); border-radius:0 8px 8px 0;
+      padding:11px 14px; margin-bottom:10px; }
+    .seo .note b { font-size:14.5px; }
+    .seo .note p { margin:4px 0 0; }
     footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
       font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
     footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
@@ -220,7 +229,7 @@
   </div>
 </header>
   <main>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
     <div class="card" id="inputCard">
       <h1 class="tool-h">부피무게 계산기</h1>
       <p class="tool-sub">택배 화물의 치수와 무게를 입력하면 부피무게(용적중량)와 실제로 청구되는 청구무게를 계산합니다.</p>
@@ -266,12 +275,18 @@
     <section class="seo">
       <h2>부피무게(용적중량)란?</h2>
       <p>운송사는 실제 무게와 부피무게 중 큰 값으로 요금을 부과합니다. 크고 가벼운 박스는 무겁고 작은 박스보다 더 많은 공간을 차지하기 때문입니다. 부피무게는 박스 부피를 운송사가 정한 부피계수(DIM divisor)로 나눈 값입니다: 부피무게 = (L × W × H) ÷ 계수. 인치·파운드에서는 보통 139를 쓰고, 센티·킬로그램의 국제 항공 화물은 5000 또는 6000을 씁니다. 청구무게는 실제 무게와 부피무게 중 큰 값을 올림한 값입니다.</p>
+      <h2>부피무게 계산, 단계별로 따라하기</h2>
+      <ol class="steps"><li><b>포장 완료된 박스를 측정합니다</b><span>테이프까지 붙인 최종 출고 상태의 박스를 가로·세로·높이로 측정합니다. 테이프, 불룩하게 튀어나온 옆면, 돌출된 손잡이까지 모두 포함해야 합니다. 운송사는 설계 도면이 아니라 허브에 도착한 실물을 측정하며, 각 변을 정수 인치(또는 cm) 단위로 올림합니다.</span></li><li><b>곱해서 부피를 구합니다</b><span>가로 × 세로 × 높이가 부피입니다. 12 × 10 × 8 in 카톤은 960 세제곱인치입니다. 단위를 반드시 통일하세요. 하나의 계산 안에서 인치와 센티미터를 섞으면 안 됩니다.</span></li><li><b>부피계수(DIM divisor)로 나눕니다</b><span>운송 계약서에 명시된 계수로 부피를 나눕니다. 960 ÷ 139 = 6.9 lb입니다. 계수가 클수록 부피무게는 작아지므로, 계약을 139에서 166으로 바꾸면 가볍고 부피 큰 화물 전체의 청구무게가 내려갑니다.</span></li><li><b>실제 무게와 비교합니다</b><span>포장된 박스의 무게를 답니다. 실제 무게가 4 lb인데 부피무게가 6.9 lb라면 운송사는 7 lb로 청구합니다. 항상 큰 값이 적용되며, 대부분의 운송사는 다음 파운드(또는 0.5 kg) 단위로 올림합니다.</span></li><li><b>크기 할증 여부를 확인합니다</b><span>청구무게가 청구서의 전부는 아닙니다. 길이 + 둘레(가장 긴 변 + 나머지 두 변 × 2)를 계산해 운송사의 추가 취급·대형 화물 기준과 비교하세요. 이 할증은 무게 요금에 더해서 부과됩니다.</span></li></ol>
       <h2>운송사별 대표 부피계수(DIM Divisor)</h2>
       <table><thead><tr><th>운송사 / 서비스</th><th>계수</th><th>단위</th></tr></thead><tbody><tr><td>UPS / FedEx (미국 소매)</td><td>139</td><td>in³ / lb</td></tr><tr><td>USPS (1 cu ft 초과)</td><td>166</td><td>in³ / lb</td></tr><tr><td>DHL Express</td><td>139</td><td>in³ / lb</td></tr><tr><td>IATA 항공 표준</td><td>6000</td><td>cm³ / kg</td></tr><tr><td>일반 특송 (미터)</td><td>5000</td><td>cm³ / kg</td></tr></tbody></table>
+      <h2>부피무게 요금을 줄이는 방법</h2>
+      <div class='note'><b>보호재가 아니라 빈 공간을 줄이세요</b><p>부피무게는 '공기'에 요금을 매깁니다. 12 × 10 × 8 in 박스를 11 × 9 × 6 in로 줄이면 부피가 960에서 594 세제곱인치로, 부피무게는 6.9 lb에서 4.3 lb로 떨어집니다. 내용물은 그대로인데 38% 절감입니다.</p></div><div class='note'><b>표준화보다 사이즈 최적화가 낫습니다</b><p>모든 상품에 큰 박스 하나만 쓰면 박스 단가는 싸지만 배송비는 비싸집니다. 주력 상품에 맞춘 3~4가지 카톤 규격을 갖추면 보통 한 시즌 운임으로 그 비용을 회수합니다.</p></div><div class='note'><b>1인치 절벽에 주의하세요</b><p>운송사가 치수를 올림하기 때문에 12.1 in로 측정된 박스는 13 in로 청구됩니다. 설계에서 몇 mm만 줄여도 한 변이 통째로 한 단위 내려가고 청구무게도 같이 내려갑니다.</p></div><div class='note'><b>할인율만이 아니라 계수를 협상하세요</b><p>화주들은 할인율에만 집중하지만, 부피계수는 모든 화물의 청구 기준 자체를 바꿉니다. 139에서 166으로 옮기면 전체 배송 프로필에서 부피무게가 약 16% 줄어듭니다.</p></div><div class='note'><b>포장 형태 자체를 재검토하세요</b><p>유연 포장재(플렉시블 메일러)와 폴리백은 각진 카톤과 측정 방식이 다르며, 가벼운 상품이라면 아예 부피무게 규정 밖으로 빠지는 경우도 많습니다.</p></div>
+      <h2>자주 하는 실수</h2>
+      <div class='note'><b>박스가 아니라 제품을 측정하는 것</b><p>부피무게는 완충재와 외포장을 포함한 배송용 카톤 기준입니다. 제품 자체만 재면 모든 견적이 실제보다 작게 나옵니다.</p></div><div class='note'><b>불룩해진 부분을 무시하는 것</b><p>꽉 채운 카톤은 옆면이 바깥으로 휩니다. 운송사는 가장 넓은 지점을 재기 때문에, 설계상 10 in인데 10.5 in로 부푼 박스는 11 in로 청구됩니다.</p></div><div class='note'><b>모든 서비스에 같은 계수를 쓰는 것</b><p>같은 운송사 안에서도 지상·특송·국제·우편 서비스의 계수가 다른 경우가 많습니다. 운송사 단위가 아니라 서비스 단위로 계수를 확인하세요.</p></div><div class='note'><b>최소 청구무게를 잊는 것</b><p>대형 화물은 부피 계산 결과와 무관하게 최소 청구무게(흔히 90 lb)로 과금되는 경우가 많습니다.</p></div><div class='note'><b>부피무게와 CBM을 혼동하는 것</b><p>부피무게는 택배 요금을 위해 부피를 무게로 환산한 값이고, 해상·항공 운임은 실제 부피(㎥)인 CBM으로 매깁니다. 서로 다른 체계이며 호환되지 않습니다.</p></div>
       <h2>자주 묻는 질문</h2>
       <details open><summary>부피무게는 어떻게 계산하나요?</summary><p>가로 × 세로 × 높이로 부피를 구한 뒤 운송사 부피계수로 나눕니다. 12 × 10 × 8 in 박스에 계수 139이면 960 ÷ 139 = 6.9 lb가 부피무게입니다.</p></details><details><summary>청구무게가 뭔가요?</summary><p>실제로 요금이 매겨지는 무게로, 실제 무게와 부피무게 중 큰 값을 파운드(또는 kg) 단위로 올림한 값입니다. 박스가 크기에 비해 가벼우면 보통 부피무게가 적용됩니다.</p></details><details><summary>부피계수는 어떤 값을 써야 하나요?</summary><p>운송사와 계약에 따라 다릅니다. 미국 국내 UPS·FedEx는 보통 139(in³/lb), USPS는 1 cu ft 초과 시 166을 씁니다. 국제 항공은 보통 5000 또는 6000(cm³/kg)입니다. 반드시 운송 계약서의 계수를 확인하세요.</p></details><details><summary>박스는 외경으로 재야 하나요?</summary><p>네. 항상 포장 완료된 카톤의 외경(부풀어 오른 부분 포함)으로 측정하세요. 그게 차량에서 실제로 차지하는 공간입니다.</p></details><details><summary>CBM과 같은 건가요?</summary><p>아니요. 부피무게는 택배·특송용으로 부피를 청구무게로 환산한 값이고, CBM은 해상·항공용 순수 부피(㎥)입니다. 컨테이너·LCL 화물은 CBM 계산기를 쓰세요.</p></details>
     </section>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
   </main>
   <footer>
     <a href="/about/">소개</a> · <a href="/privacy/">개인정보처리방침</a> · <a href="/contact/">문의하기</a>

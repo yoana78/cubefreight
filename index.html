@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CubeFreight — Free Carton, Pallet &amp; Freight Class Calculators (3D)</title>
-  <meta name="description" content="Three free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, and NMFC freight class density estimation.">
+  <meta name="description" content="Five free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, NMFC freight class, DIM weight and CBM.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://cubefreight.pages.dev/">
   <link rel="alternate" hreflang="en" href="https://cubefreight.pages.dev/">
@@ -15,13 +15,13 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CubeFreight">
   <meta property="og:title" content="CubeFreight — Free Carton, Pallet &amp; Freight Class Calculators (3D)">
-  <meta property="og:description" content="Three free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, and NMFC freight class density estimation.">
+  <meta property="og:description" content="Five free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, NMFC freight class, DIM weight and CBM.">
   <meta property="og:url" content="https://cubefreight.pages.dev/">
   <meta property="og:image" content="https://cubefreight.pages.dev/og-image.png">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CubeFreight — Free Carton, Pallet &amp; Freight Class Calculators (3D)">
-  <meta name="twitter:description" content="Three free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, and NMFC freight class density estimation.">
+  <meta name="twitter:description" content="Five free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, NMFC freight class, DIM weight and CBM.">
   <meta name="twitter:image" content="https://cubefreight.pages.dev/og-image.png">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -88,6 +88,19 @@
     .seo details { border-bottom: 1px solid var(--line); padding: 12px 4px; }
     .seo summary { font-weight: 600; font-size: 14.5px; cursor: pointer; }
     .seo details p { margin: 10px 0 2px; }
+    .seo h2 + table { margin-bottom: 22px; }
+    .seo table.pick { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .seo table.pick th, .seo table.pick td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; }
+    .seo table.pick th { background: #F1F5F9; font-weight: 600; }
+    .seo table.pick td:first-child { color: var(--ink-dim); }
+    .seo table.pick td:last-child { font-weight: 600; white-space: nowrap; }
+    @media (max-width: 620px) {
+      .seo table.pick, .seo table.pick tbody, .seo table.pick tr, .seo table.pick td { display: block; width: 100%; }
+      .seo table.pick thead { display: none; }
+      .seo table.pick tr { margin-bottom: 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+      .seo table.pick td { border: none; }
+      .seo table.pick td:last-child { background: #F1F5F9; white-space: normal; }
+    }
     .faq-h { margin-top: 34px; }
     footer { text-align: center; padding: 26px 24px; border-top: 1px solid var(--line);
       color: var(--ink-faint); font-size: 11.5px; background: rgba(255,255,255,0.8); line-height: 1.7; }
@@ -104,7 +117,7 @@
       "name": "CubeFreight",
       "url": "https://cubefreight.pages.dev/",
       "inLanguage": "en",
-      "description": "Three free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, and NMFC freight class density estimation."
+      "description": "Five free browser-based logistics calculators: carton box sizing with RSC dielines, 3D pallet load optimization, NMFC freight class, DIM weight and CBM."
     },
     {
       "@type": "ItemList",
@@ -346,8 +359,12 @@
     </div>
     <section class="seo">
       <h2>What is CubeFreight?</h2>
-      <p>CubeFreight is a suite of three free logistics calculators built for packaging engineers, warehouse planners and LTL shippers. Each tool solves one step of the same chain: the Carton calculator designs the shipping box around your product, the Pallet calculator finds the best way to stack those boxes on a pallet, and the LTL calculator estimates the NMFC freight class that determines what the shipment costs to move.</p>
+      <p>CubeFreight is a suite of five free logistics calculators built for packaging engineers, warehouse planners, e-commerce sellers and LTL shippers. Each tool solves one step of the same chain: the Carton calculator designs the shipping box around your product, the Pallet calculator finds the best way to stack those boxes on a pallet, the LTL calculator estimates the NMFC freight class that determines what the shipment costs to move, and the DIM Weight and CBM calculators convert those dimensions into the billable weight and volume that parcel, ocean and air carriers actually charge on.</p>
       <p>Everything is a plain web page — dimensions never leave your browser, results render as interactive 3D views, and every tool exports a printable PDF report you can hand to the warehouse or your carrier.</p>
+      <h2>Which calculator do you need?</h2>
+      <table class="pick"><thead><tr><th>If this is your situation</th><th>Start here</th></tr></thead><tbody><tr><td>You have a product and need to design the shipping box around it</td><td>Carton 3D Calc</td></tr><tr><td>The carton is fixed and you want the most units per pallet</td><td>Pallet 3D Calc</td></tr><tr><td>You are quoting an LTL shipment and need the NMFC freight class</td><td>LTL 3D Calc</td></tr><tr><td>A courier is billing you for more weight than the parcel actually weighs</td><td>DIM Weight Calc</td></tr><tr><td>You are booking ocean LCL or air freight and need cubic metres</td><td>CBM Calc</td></tr></tbody></table>
+      <h2>How the tools fit together</h2>
+      <p>Freight cost is decided long before a carrier quotes it. The carton size sets how many units fit on a pallet; the pallet pattern sets the density that determines the freight class; and that same set of dimensions decides whether a parcel is billed on its real weight or its dimensional weight. Changing a box by half an inch can move all three numbers. Working through the tools in order - design the carton, stack the pallet, then check the class, billable weight or cubic metres - shows where a shipment is losing money instead of only confirming the invoice after it arrives.</p>
       <h2 class="faq-h">Frequently Asked Questions</h2>
       <details open><summary>Are the calculators really free?</summary><p>Yes. All three calculators are free, with no account, no trial limit and no watermarks on the PDF exports. The site is supported by advertising.</p></details><details><summary>Which calculator should I start with?</summary><p>Follow the shipping chain: if you are still deciding the box size, start with the Carton calculator — it also shows the pallet load for each candidate box. If your carton is fixed, use the Pallet calculator to maximize the load. If you ship LTL in North America, run the result through the LTL calculator to estimate the freight class.</p></details><details><summary>Does my data leave the browser?</summary><p>No. Dimensions, weights and quantities are processed entirely in your browser by JavaScript. Nothing you type is uploaded or stored on a server.</p></details><details><summary>Which pallet standards are supported?</summary><p>T11 (1100×1100, KR/JP), Euro EPAL (1200×800), US GMA (48×40 in), ISO industrial (1200×1000), Australian (1165×1165) and fully custom sizes, in mm, cm or inches.</p></details><details><summary>How accurate is the freight class estimate?</summary><p>The LTL calculator applies the official density break points, including the July 2025 13-sub scale, and calculates density exactly the way the NMFC measures a handling unit — pallet included. Actual classification can still differ for commodities with special stowability, handling or liability rules, so treat it as an estimate.</p></details><details><summary>When should I use the DIM weight calculator vs the CBM calculator?</summary><p>Use the DIM weight calculator for parcel and courier shipments (UPS, FedEx, DHL), where the carrier bills the greater of the actual and dimensional weight. Use the CBM calculator for ocean and air freight, where cost is based on cubic metres and chargeable weight.</p></details><details><summary>Can these tools estimate my shipping cost?</summary><p>Yes, as an estimate. Enter your own rate — per pound or kilo in the DIM weight calculator, or per CBM or kg in the CBM calculator — and the tool multiplies it by the billable or chargeable weight. Actual charges vary by zone, service, surcharges and your carrier contract.</p></details><details><summary>What will the Pro version add?</summary><p>A desktop-grade suite for daily production use: mixed-SKU palletizing, double stacking, brick stacking patterns, container planning and bulk exports. It is in development — the free web calculators stay free.</p></details>
     </section>

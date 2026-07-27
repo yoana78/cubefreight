@@ -58,9 +58,10 @@
     * { box-sizing:border-box; margin:0; }
     body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
     main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
-    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
-      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
-      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    /* Ad slot: no visible chrome. Auto ads inject the unit; an unfilled
+       slot collapses instead of showing a placeholder box. */
+    .ad { margin:20px 0; text-align:center; }
+    .ad:empty { display:none; }
     .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
     .tool-h { font-size:26px; font-weight:700; }
     .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
@@ -120,6 +121,14 @@
     .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
     .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
     .seo details p { margin:9px 0 2px; }
+    .seo ol.steps { margin:10px 0 4px; padding-left:20px; }
+    .seo ol.steps li { margin-bottom:13px; font-size:14.5px; line-height:1.7; }
+    .seo ol.steps li b { display:block; color:var(--ink); margin-bottom:3px; }
+    .seo ol.steps li span { color:var(--ink-dim); }
+    .seo .note { border-left:3px solid var(--acc); background:var(--panel); border-radius:0 8px 8px 0;
+      padding:11px 14px; margin-bottom:10px; }
+    .seo .note b { font-size:14.5px; }
+    .seo .note p { margin:4px 0 0; }
     footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
       font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
     footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
@@ -220,7 +229,7 @@
   </div>
 </header>
   <main>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
     <div class="card" id="inputCard">
       <h1 class="tool-h">Calculadora de Peso DIM</h1>
       <p class="tool-sub">Introduce las dimensiones y el peso de tu paquete para obtener el peso dimensional (volumétrico) y el peso facturable que cobra tu transportista.</p>
@@ -266,12 +275,18 @@
     <section class="seo">
       <h2>¿Qué es el peso dimensional (DIM)?</h2>
       <p>Los transportistas cobran los paquetes por el mayor de dos valores — el peso real o el peso dimensional — porque una caja grande y ligera ocupa un espacio que una pequeña y pesada no. El peso dimensional es el volumen de la caja dividido por un divisor DIM fijado por el transportista: peso DIM = (L × An × Al) ÷ divisor. En pulgadas y libras el divisor común es 139; en centímetros y kilos los envíos aéreos internacionales usan 5000 o 6000. El peso facturable es el mayor de los dos, redondeado hacia arriba.</p>
+      <h2>Cómo calcular el peso volumétrico paso a paso</h2>
+      <ol class="steps"><li><b>Mida la caja ya embalada</b><span>Mida largo, ancho y alto de la caja sellada en su estado final de envío. Incluya la cinta, los laterales abombados y cualquier asa que sobresalga. Los transportistas miden la caja tal como llega a su centro, no como fue diseñada, y redondean cada dimensión hacia arriba a la pulgada o centímetro entero.</span></li><li><b>Multiplique para obtener el volumen</b><span>Largo x ancho x alto da el volumen. Una caja de 12 x 10 x 8 in son 960 pulgadas cúbicas. Mantenga las unidades consistentes: nunca mezcle pulgadas con centímetros en un mismo cálculo.</span></li><li><b>Divida por el divisor DIM</b><span>Divida el volumen por el divisor que figura en su contrato. 960 entre 139 son 6,9 lb. Un divisor mayor produce un peso volumétrico menor, así que pasar de 139 a 166 reduce el peso facturable de todos los envíos ligeros y voluminosos.</span></li><li><b>Compare con el peso real</b><span>Pese la caja embalada. Si el paquete pesa 4 lb pero el peso volumétrico es 6,9 lb, el transportista factura 7 lb. Siempre gana el número mayor, y la mayoría redondea al siguiente kilo o media libra.</span></li><li><b>Revise los recargos por tamaño</b><span>El peso facturable no es toda la factura. Calcule largo más contorno - el lado más largo más dos veces el ancho y dos veces el alto - y compárelo con los umbrales de manejo adicional y sobredimensión de su transportista. Esos recargos se suman al cargo por peso.</span></li></ol>
       <h2>Divisores DIM Comunes por Transportista</h2>
       <table><thead><tr><th>Transportista / servicio</th><th>Divisor</th><th>Unidades</th></tr></thead><tbody><tr><td>UPS / FedEx (EE. UU. retail)</td><td>139</td><td>in³ / lb</td></tr><tr><td>USPS (&gt;1 pie³)</td><td>166</td><td>in³ / lb</td></tr><tr><td>DHL Express</td><td>139</td><td>in³ / lb</td></tr><tr><td>IATA aéreo estándar</td><td>6000</td><td>cm³ / kg</td></tr><tr><td>Mensajería común (métrico)</td><td>5000</td><td>cm³ / kg</td></tr></tbody></table>
+      <h2>Cómo reducir los cargos por peso volumétrico</h2>
+      <div class='note'><b>Elimine el espacio vacío, no la protección</b><p>El peso volumétrico penaliza el aire. Reducir una caja de 12 x 10 x 8 in a 11 x 9 x 6 in baja el volumen de 960 a 594 pulgadas cúbicas y el peso volumétrico de 6,9 lb a 4,3 lb: un 38% menos sin cambiar el producto.</p></div><div class='note'><b>Ajuste el tamaño en lugar de estandarizar</b><p>Una sola caja grande para todo sale más barata por caja pero más cara por envío. Tener tres o cuatro tamaños ajustados a sus productos más vendidos suele amortizarse en una sola temporada de facturas de transporte.</p></div><div class='note'><b>Cuidado con el salto de una pulgada</b><p>Como los transportistas redondean hacia arriba, una caja que mide 12,1 in se factura como 13 in. Recortar unos milímetros en el diseño puede bajar una dimensión entera y con ella el peso facturable.</p></div><div class='note'><b>Negocie el divisor, no solo la tarifa</b><p>Los cargadores se centran en el porcentaje de descuento, pero el divisor DIM cambia el peso con el que se factura cada paquete. Pasar de 139 a 166 reduce el peso volumétrico alrededor de un 16%.</p></div><div class='note'><b>Reconsidere el formato de embalaje</b><p>Los sobres flexibles y las bolsas de polietileno se miden de forma distinta a las cajas rígidas y, en mercancía ligera, a menudo quedan fuera de las reglas de peso volumétrico.</p></div>
+      <h2>Errores frecuentes</h2>
+      <div class='note'><b>Medir el producto en lugar de la caja</b><p>El peso volumétrico se basa en la caja de envío, incluido el relleno y el embalaje exterior. Medir el producto desnudo subestima todas las estimaciones.</p></div><div class='note'><b>Ignorar el abombamiento</b><p>Una caja muy llena se curva hacia fuera. El transportista mide el punto más ancho, así que una caja diseñada a 10 in que se abomba a 10,5 in se factura a 11 in.</p></div><div class='note'><b>Usar un solo divisor para todos los servicios</b><p>Terrestre, exprés, internacional y postal usan con frecuencia divisores distintos dentro del mismo transportista. Verifique el divisor por servicio, no por transportista.</p></div><div class='note'><b>Olvidar el peso mínimo facturable</b><p>Los paquetes sobredimensionados suelen facturarse a un peso mínimo, habitualmente 90 lb, independientemente del cálculo volumétrico.</p></div><div class='note'><b>Confundir peso volumétrico con CBM</b><p>El peso volumétrico convierte volumen en peso facturable para paquetería. El transporte marítimo y aéreo cotiza sobre CBM, el volumen real en metros cúbicos. Son sistemas distintos y no intercambiables.</p></div>
       <h2>Preguntas Frecuentes</h2>
       <details open><summary>¿Cómo se calcula el peso dimensional?</summary><p>Multiplica largo × ancho × alto para el volumen y divide por el divisor DIM del transportista. Para una caja de 12 × 10 × 8 in con divisor 139: 960 ÷ 139 = 6,9 lb de peso dimensional.</p></details><details><summary>¿Qué es el peso facturable?</summary><p>El peso que realmente se cobra: el mayor entre el peso real y el dimensional, redondeado hacia arriba a la siguiente libra o kilo. Si la caja es ligera para su tamaño, suele regir el peso dimensional.</p></details><details><summary>¿Qué divisor DIM debo usar?</summary><p>Depende del transportista y del contrato. Los paquetes nacionales de UPS y FedEx en EE. UU. usan 139 (in³/lb); USPS usa 166 para paquetes de más de un pie cúbico. El flete aéreo internacional suele usar 5000 o 6000 (cm³/kg). Confirma siempre el divisor en tu acuerdo.</p></details><details><summary>¿La caja debe medirse por fuera?</summary><p>Sí. Mide siempre las dimensiones exteriores del cartón embalado, incluido cualquier abombamiento, porque ese es el espacio que ocupa el paquete en el vehículo.</p></details><details><summary>¿Es lo mismo que el CBM?</summary><p>No. El peso DIM convierte el volumen en un peso facturable para paquetería. El CBM es el volumen en metros cúbicos, usado para flete marítimo y aéreo. Usa la calculadora CBM para contenedores y LCL.</p></details>
     </section>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
   </main>
   <footer>
     <a href="/about/">Acerca de</a> · <a href="/privacy/">Política de Privacidad</a> · <a href="/contact/">Contacto</a>

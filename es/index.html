@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CubeFreight — Calculadoras Gratuitas de Cartón, Palet y Clase de Flete (3D)</title>
-  <meta name="description" content="Tres calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC.">
+  <meta name="description" content="Cinco calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de palet, clase de flete NMFC, peso volumétrico y CBM.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://cubefreight.pages.dev/es/">
   <link rel="alternate" hreflang="en" href="https://cubefreight.pages.dev/">
@@ -15,13 +15,13 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CubeFreight">
   <meta property="og:title" content="CubeFreight — Calculadoras Gratuitas de Cartón, Palet y Clase de Flete (3D)">
-  <meta property="og:description" content="Tres calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC.">
+  <meta property="og:description" content="Cinco calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de palet, clase de flete NMFC, peso volumétrico y CBM.">
   <meta property="og:url" content="https://cubefreight.pages.dev/es/">
   <meta property="og:image" content="https://cubefreight.pages.dev/og-image.png">
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CubeFreight — Calculadoras Gratuitas de Cartón, Palet y Clase de Flete (3D)">
-  <meta name="twitter:description" content="Tres calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC.">
+  <meta name="twitter:description" content="Cinco calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de palet, clase de flete NMFC, peso volumétrico y CBM.">
   <meta name="twitter:image" content="https://cubefreight.pages.dev/og-image.png">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -88,6 +88,19 @@
     .seo details { border-bottom: 1px solid var(--line); padding: 12px 4px; }
     .seo summary { font-weight: 600; font-size: 14.5px; cursor: pointer; }
     .seo details p { margin: 10px 0 2px; }
+    .seo h2 + table { margin-bottom: 22px; }
+    .seo table.pick { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .seo table.pick th, .seo table.pick td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; }
+    .seo table.pick th { background: #F1F5F9; font-weight: 600; }
+    .seo table.pick td:first-child { color: var(--ink-dim); }
+    .seo table.pick td:last-child { font-weight: 600; white-space: nowrap; }
+    @media (max-width: 620px) {
+      .seo table.pick, .seo table.pick tbody, .seo table.pick tr, .seo table.pick td { display: block; width: 100%; }
+      .seo table.pick thead { display: none; }
+      .seo table.pick tr { margin-bottom: 10px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+      .seo table.pick td { border: none; }
+      .seo table.pick td:last-child { background: #F1F5F9; white-space: normal; }
+    }
     .faq-h { margin-top: 34px; }
     footer { text-align: center; padding: 26px 24px; border-top: 1px solid var(--line);
       color: var(--ink-faint); font-size: 11.5px; background: rgba(255,255,255,0.8); line-height: 1.7; }
@@ -104,7 +117,7 @@
       "name": "CubeFreight",
       "url": "https://cubefreight.pages.dev/es/",
       "inLanguage": "es",
-      "description": "Tres calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de carga de palet y estimación de clase de flete NMFC."
+      "description": "Cinco calculadoras de logística gratuitas: dimensionado de cajas con troquel RSC, optimización 3D de palet, clase de flete NMFC, peso volumétrico y CBM."
     },
     {
       "@type": "ItemList",
@@ -346,8 +359,12 @@
     </div>
     <section class="seo">
       <h2>¿Qué es CubeFreight?</h2>
-      <p>CubeFreight es un conjunto de tres calculadoras de logística gratuitas creadas para ingenieros de embalaje, planificadores de almacén y transportistas LTL. Cada herramienta resuelve un paso de la misma cadena: la calculadora de Cartón diseña la caja de envío alrededor de tu producto, la calculadora de Palet encuentra la mejor forma de apilar esas cajas en un palet, y la calculadora de LTL estima la clase de flete NMFC que determina cuánto cuesta mover el envío.</p>
+      <p>CubeFreight es un conjunto de cinco calculadoras de logística gratuitas creadas para ingenieros de embalaje, planificadores de almacén, vendedores de comercio electrónico y transportistas LTL. Cada herramienta resuelve un paso de la misma cadena: la calculadora de Cartón diseña la caja de envío alrededor de tu producto, la de Palet encuentra la mejor forma de apilar esas cajas en un palet, la de LTL estima la clase de flete NMFC que determina cuánto cuesta mover el envío, y las calculadoras de Peso Volumétrico y CBM convierten esas dimensiones en el peso facturable y el volumen que realmente cobran los transportistas de paquetería, marítimos y aéreos.</p>
       <p>Todo es una simple página web — las dimensiones nunca salen de tu navegador, los resultados se muestran como vistas 3D interactivas y cada herramienta exporta un informe PDF imprimible que puedes entregar al almacén o a tu transportista.</p>
+      <h2>¿Qué calculadora necesitas?</h2>
+      <table class="pick"><thead><tr><th>Si esta es tu situación</th><th>Empieza aquí</th></tr></thead><tbody><tr><td>Tienes un producto y necesitas diseñar la caja de envío</td><td>Carton 3D Calc</td></tr><tr><td>La caja ya está fijada y quieres el máximo de unidades por palet</td><td>Pallet 3D Calc</td></tr><tr><td>Estás cotizando un envío LTL y necesitas la clase de flete NMFC</td><td>LTL 3D Calc</td></tr><tr><td>Un courier te factura más peso del que realmente pesa el paquete</td><td>Calculadora de Peso Volumétrico</td></tr><tr><td>Vas a reservar LCL marítimo o flete aéreo y necesitas metros cúbicos</td><td>Calculadora de CBM</td></tr></tbody></table>
+      <h2>Cómo encajan las herramientas</h2>
+      <p>El coste del flete se decide mucho antes de que un transportista lo cotice. El tamaño de la caja determina cuántas unidades caben en un palet; el patrón del palet fija la densidad que determina la clase de flete; y ese mismo conjunto de dimensiones decide si un paquete se factura por su peso real o por su peso volumétrico. Cambiar una caja un centímetro mueve las tres cifras. Recorrer las herramientas en orden - diseñar la caja, apilar el palet y después comprobar la clase, el peso facturable o los metros cúbicos - muestra dónde está perdiendo dinero un envío en lugar de limitarse a confirmar la factura cuando ya ha llegado.</p>
       <h2 class="faq-h">Preguntas Frecuentes</h2>
       <details open><summary>¿Las calculadoras son realmente gratuitas?</summary><p>Sí. Las tres calculadoras son gratuitas, sin cuenta, sin límite de prueba y sin marcas de agua en las exportaciones PDF. El sitio se financia con publicidad.</p></details><details><summary>¿Con qué calculadora debería empezar?</summary><p>Sigue la cadena de envío: si aún estás decidiendo el tamaño de la caja, empieza con la calculadora de Cartón — también muestra la carga de palet para cada caja candidata. Si tu cartón está fijado, usa la calculadora de Palet para maximizar la carga. Si envías LTL en Norteamérica, pasa el resultado por la calculadora de LTL para estimar la clase de flete.</p></details><details><summary>¿Salen mis datos del navegador?</summary><p>No. Las dimensiones, los pesos y las cantidades se procesan enteramente en tu navegador con JavaScript. Nada de lo que escribes se sube ni se almacena en un servidor.</p></details><details><summary>¿Qué estándares de palet se admiten?</summary><p>T11 (1100×1100, KR/JP), Euro EPAL (1200×800), GMA de EE. UU. (48×40 in), ISO industrial (1200×1000), australiano (1165×1165) y tamaños totalmente personalizados, en mm, cm o pulgadas.</p></details><details><summary>¿Qué precisión tiene la estimación de clase de flete?</summary><p>La calculadora de LTL aplica los puntos de corte de densidad oficiales, incluida la escala de 13 subprovisiones de julio de 2025, y calcula la densidad exactamente como el NMFC mide una unidad de manipulación — palet incluido. La clasificación real puede diferir para mercancías con reglas especiales de estibabilidad, manipulación o responsabilidad, así que tómalo como una estimación.</p></details><details><summary>¿Cuándo debo usar la calculadora de peso DIM y cuándo la de CBM?</summary><p>Usa la calculadora de peso DIM para envíos de paquetería y mensajería (UPS, FedEx, DHL), donde el transportista cobra el mayor entre el peso real y el dimensional. Usa la calculadora CBM para flete marítimo y aéreo, donde el coste se basa en metros cúbicos y el peso facturable.</p></details><details><summary>¿Estas herramientas pueden estimar mi coste de envío?</summary><p>Sí, como estimación. Introduce tu propia tarifa — por libra o kilo en la calculadora de peso DIM, o por CBM o kg en la de CBM — y la herramienta la multiplica por el peso facturable. Los cargos reales varían según zona, servicio, recargos y tu contrato.</p></details><details><summary>¿Qué añadirá la versión Pro?</summary><p>Una suite de nivel escritorio para uso diario en producción: paletización multi-SKU, doble apilado, patrones de apilado en ladrillo, planificación de contenedores y exportaciones masivas. Está en desarrollo — las calculadoras web gratuitas seguirán siendo gratuitas.</p></details>
     </section>

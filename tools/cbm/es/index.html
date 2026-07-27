@@ -58,9 +58,10 @@
     * { box-sizing:border-box; margin:0; }
     body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
     main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
-    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
-      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
-      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    /* Ad slot: no visible chrome. Auto ads inject the unit; an unfilled
+       slot collapses instead of showing a placeholder box. */
+    .ad { margin:20px 0; text-align:center; }
+    .ad:empty { display:none; }
     .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
     .tool-h { font-size:26px; font-weight:700; }
     .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
@@ -120,6 +121,14 @@
     .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
     .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
     .seo details p { margin:9px 0 2px; }
+    .seo ol.steps { margin:10px 0 4px; padding-left:20px; }
+    .seo ol.steps li { margin-bottom:13px; font-size:14.5px; line-height:1.7; }
+    .seo ol.steps li b { display:block; color:var(--ink); margin-bottom:3px; }
+    .seo ol.steps li span { color:var(--ink-dim); }
+    .seo .note { border-left:3px solid var(--acc); background:var(--panel); border-radius:0 8px 8px 0;
+      padding:11px 14px; margin-bottom:10px; }
+    .seo .note b { font-size:14.5px; }
+    .seo .note p { margin:4px 0 0; }
     footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
       font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
     footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
@@ -220,7 +229,7 @@
   </div>
 </header>
   <main>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
     <div class="card" id="inputCard">
       <h1 class="tool-h">Calculadora CBM</h1>
       <p class="tool-sub">Convierte las dimensiones del cartón en metros cúbicos (CBM) para flete marítimo y aéreo, con peso facturable y ajuste al contenedor.</p>
@@ -271,12 +280,18 @@
     <section class="seo">
       <h2>¿Qué es el CBM (metro cúbico)?</h2>
       <p>El CBM es el volumen de tu carga en metros cúbicos, la base para la tarificación del flete marítimo LCL y aéreo. Convierte cada dimensión a metros y multiplica: CBM = (L × An × Al) en metros. Un cartón de 40 × 30 × 25 cm es 0,40 × 0,30 × 0,25 = 0,03 CBM. Multiplica por el número de cartones para el total. El LCL marítimo se cobra por peso o medida (W/M), lo que sea mayor: una tonelada o un CBM. El flete aéreo usa un peso volumétrico de unos 167 kg por CBM.</p>
+      <h2>Cómo calcular el CBM paso a paso</h2>
+      <ol class="steps"><li><b>Convierta cada dimensión a metros</b><span>El CBM se define en metros, así que una caja medida en centímetros debe dividirse primero entre 100. Una caja de 40 x 30 x 25 cm pasa a ser 0,40 x 0,30 x 0,25 m. Si mide en pulgadas, divida cada cifra entre 39,37.</span></li><li><b>Multiplique las tres dimensiones</b><span>0,40 x 0,30 x 0,25 = 0,03 CBM por caja. Este es el volumen que ocupa una caja y se basa siempre en las dimensiones exteriores de la caja embalada, nunca en la cavidad interior.</span></li><li><b>Multiplique por el número de cajas</b><span>100 cajas de 0,03 CBM son 3 CBM en total. En envíos mixtos, calcule cada tipo de caja por separado y sume los resultados; nunca promedie dimensiones de tamaños distintos.</span></li><li><b>Compare volumen con peso</b><span>El LCL marítimo se cotiza por lo que resulte mayor, el CBM o el tonelaje métrico. Tres CBM que pesan 1,2 toneladas se facturan como 3 toneladas de flete porque el volumen supera al peso.</span></li><li><b>Añada el espacio del palet si va paletizado</b><span>Una vez apiladas sobre un palet, el volumen facturable pasa a ser la huella del palet por la altura total apilada, no la suma de las cajas individuales. La base del palet y cualquier voladizo cuentan para el volumen facturado.</span></li></ol>
       <h2>Referencia de Capacidad de Contenedor</h2>
       <table><thead><tr><th>Contenedor</th><th>CBM interno</th><th>CBM útil</th></tr></thead><tbody><tr><td>20 pies estándar</td><td>33 m³</td><td>~28 m³</td></tr><tr><td>40 pies estándar</td><td>67 m³</td><td>~58 m³</td></tr><tr><td>40 pies high cube</td><td>76 m³</td><td>~68 m³</td></tr><tr><td>Aéreo (por CBM)</td><td>—</td><td>167 kg vol.</td></tr></tbody></table>
+      <h2>Entender peso o medida (W/M)</h2>
+      <div class='note'><b>Una tonelada de flete es la cifra mayor</b><p>Los transportistas LCL facturan en toneladas de flete: un metro cúbico o una tonelada métrica, la que resulte mayor. La carga ligera y voluminosa se factura por volumen; la densa, como azulejos o maquinaria, por peso.</p></div><div class='note'><b>El flete aéreo usa otra proporción</b><p>El transporte aéreo convierte volumen en peso a razón de unos 167 kg por metro cúbico, que es la regla volumétrica IATA de 6000 cm3/kg expresada por CBM. Un CBM que pese menos de 167 kg se factura como 167 kg.</p></div><div class='note'><b>Sepa cuándo sale más barato un contenedor completo</b><p>El coste del LCL escala con el volumen, así que a partir de unos 13 a 15 CBM un contenedor completo de 20 pies suele salir más barato que pagar por metro cúbico, una vez incluidos manejo y gastos en destino.</p></div><div class='note'><b>Los pies cúbicos siguen apareciendo en documentos de EE. UU.</b><p>Un metro cúbico son 35,31 pies cúbicos. Los documentos estadounidenses y algunas aerolíneas cotizan en CFT, por lo que el mismo envío puede figurar como 3 CBM en un documento y 105,9 CFT en otro.</p></div>
+      <h2>Errores frecuentes</h2>
+      <div class='note'><b>Usar dimensiones interiores</b><p>El CBM debe calcularse con las dimensiones exteriores de la caja. Las interiores describen la cavidad del producto y subestiman el espacio que el envío ocupa realmente en el buque.</p></div><div class='note'><b>Mezclar unidades a mitad del cálculo</b><p>Multiplicar centímetros por metros da un número que parece razonable pero está equivocado por un factor de 100 o más. Convierta todo a metros antes de multiplicar.</p></div><div class='note'><b>Olvidar el palet</b><p>Un palet de 1,2 x 1,0 m apilado a 1,5 m son 1,8 CBM de espacio facturado aunque las cajas sumen solo 1,5 CBM. Recuerde que la altura apilada incluye la base del palet, normalmente 0,14 m.</p></div><div class='note'><b>Suponer que siempre manda el volumen</b><p>La carga densa se factura por peso. Calcule siempre ambas cifras: un envío de 2 CBM que pesa 3 toneladas se factura como 3 toneladas de flete, no 2.</p></div><div class='note'><b>Ignorar los límites de apilado</b><p>La carga marcada como no apilable se cobra por toda la altura que bloquea dentro del contenedor, lo que puede duplicar el CBM efectivo aunque las cajas sean bajas.</p></div>
       <h2>Preguntas Frecuentes</h2>
       <details open><summary>¿Cómo calculo el CBM?</summary><p>Convierte largo, ancho y alto a metros y multiplica. Un cartón de 40 × 30 × 25 cm es 0,40 × 0,30 × 0,25 = 0,03 CBM. Para 100 cartones son 3,0 CBM en total.</p></details><details><summary>¿Qué es el peso facturable en LCL marítimo?</summary><p>El LCL marítimo usa peso o medida (W/M): se cobra lo que sea mayor — una tonelada de ingreso (1000 kg) o un metro cúbico. Introduce el peso por cartón y la calculadora muestra ambos para ver cuál rige.</p></details><details><summary>¿Cómo se halla el peso volumétrico aéreo?</summary><p>El flete aéreo cobra el mayor entre el peso real y un peso volumétrico de unos 167 kg por metro cúbico (regla IATA 1:6000). 3 CBM equivalen a unos 500 kg de peso volumétrico.</p></details><details><summary>¿Cuántos cartones caben en un contenedor?</summary><p>Divide el volumen útil del contenedor por el CBM de tu cartón: unos 28 m³ para un 20 pies y 58 m³ para un 40 pies en la práctica. La carga real es algo menor porque los cartones nunca encajan a la perfección — usa la calculadora de Palet o Cartón para un layout exacto.</p></details><details><summary>¿Uso el tamaño interior o exterior del cartón?</summary><p>Siempre el exterior. El flete se cobra por el espacio que ocupa el cartón, así que el grosor del cartón y cualquier abombamiento cuentan para el CBM.</p></details>
     </section>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
   </main>
   <footer>
     <a href="/about/">Acerca de</a> · <a href="/privacy/">Política de Privacidad</a> · <a href="/contact/">Contacto</a>

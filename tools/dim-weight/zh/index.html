@@ -58,9 +58,10 @@
     * { box-sizing:border-box; margin:0; }
     body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
     main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
-    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
-      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
-      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    /* Ad slot: no visible chrome. Auto ads inject the unit; an unfilled
+       slot collapses instead of showing a placeholder box. */
+    .ad { margin:20px 0; text-align:center; }
+    .ad:empty { display:none; }
     .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
     .tool-h { font-size:26px; font-weight:700; }
     .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
@@ -120,6 +121,14 @@
     .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
     .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
     .seo details p { margin:9px 0 2px; }
+    .seo ol.steps { margin:10px 0 4px; padding-left:20px; }
+    .seo ol.steps li { margin-bottom:13px; font-size:14.5px; line-height:1.7; }
+    .seo ol.steps li b { display:block; color:var(--ink); margin-bottom:3px; }
+    .seo ol.steps li span { color:var(--ink-dim); }
+    .seo .note { border-left:3px solid var(--acc); background:var(--panel); border-radius:0 8px 8px 0;
+      padding:11px 14px; margin-bottom:10px; }
+    .seo .note b { font-size:14.5px; }
+    .seo .note p { margin:4px 0 0; }
     footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
       font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
     footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
@@ -220,7 +229,7 @@
   </div>
 </header>
   <main>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
     <div class="card" id="inputCard">
       <h1 class="tool-h">体积重量计算器</h1>
       <p class="tool-sub">输入快递货物的尺寸和重量，即可计算体积重量（材积重量）以及承运商实际收取的计费重量。</p>
@@ -266,12 +275,18 @@
     <section class="seo">
       <h2>什么是体积重量（材积重量）？</h2>
       <p>承运商按实际重量和体积重量中的较大者收费，因为又大又轻的箱子占用的空间比又重又小的箱子多。体积重量是箱子体积除以承运商设定的体积系数：体积重量 = (L × W × H) ÷ 系数。英寸·磅通常用139；厘米·千克的国际空运用5000或6000。计费重量是实际重量和体积重量中较大者向上取整。</p>
+      <h2>逐步计算体积重量</h2>
+      <ol class="steps"><li><b>测量封装完成的纸箱</b><span>以最终出货状态测量封好的箱子的长、宽、高，包含胶带、鼓起的侧面以及任何突出的把手。承运商测量的是抵达枢纽时的实物，而非设计尺寸，并会将每一边向上取整到整数英寸或厘米。</span></li><li><b>相乘得出体积</b><span>长 × 宽 × 高即为体积。12 × 10 × 8 英寸的纸箱为 960 立方英寸。务必统一单位，同一次计算中绝不可混用英寸与厘米。</span></li><li><b>除以体积重量除数</b><span>用运输合同中约定的除数去除体积。960 ÷ 139 = 6.9 磅。除数越大，体积重量越小，因此把合同从 139 调整为 166，可以降低所有轻抛货的计费重量。</span></li><li><b>与实际重量比较</b><span>称量封装后的箱子。若实重为 4 磅而体积重量为 6.9 磅，承运商按 7 磅计费。始终取较大值，且多数承运商会向上取整到下一个整磅或半公斤。</span></li><li><b>检查尺寸附加费</b><span>计费重量并非账单的全部。计算长度加围长（最长边加上另外两边各两倍），并与承运商的额外操作费和超尺寸门槛比较。这些附加费会叠加在重量费之上。</span></li></ol>
       <h2>各承运商常用体积系数</h2>
       <table><thead><tr><th>承运商 / 服务</th><th>系数</th><th>单位</th></tr></thead><tbody><tr><td>UPS / FedEx (美国零售)</td><td>139</td><td>in³ / lb</td></tr><tr><td>USPS (&gt;1 立方英尺)</td><td>166</td><td>in³ / lb</td></tr><tr><td>DHL Express</td><td>139</td><td>in³ / lb</td></tr><tr><td>IATA 空运标准</td><td>6000</td><td>cm³ / kg</td></tr><tr><td>常见快递 (公制)</td><td>5000</td><td>cm³ / kg</td></tr></tbody></table>
+      <h2>如何降低体积重量费用</h2>
+      <div class='note'><b>减少空隙，而不是减少保护</b><p>体积重量是在为空气付费。把 12 × 10 × 8 英寸的箱子缩到 11 × 9 × 6 英寸，体积从 960 降至 594 立方英寸，体积重量从 6.9 磅降至 4.3 磅，内容物不变却省下 38%。</p></div><div class='note'><b>尺寸适配优于统一规格</b><p>所有商品都用一种大箱子，箱子单价便宜但运费更贵。备齐三到四种与主力商品匹配的纸箱规格，通常一个旺季的运费就能回本。</p></div><div class='note'><b>留意一英寸的临界点</b><p>由于承运商向上取整，量得 12.1 英寸的箱子会按 13 英寸计费。设计上削减几毫米，就可能让整条边下降一个单位，计费重量随之下降。</p></div><div class='note'><b>谈判除数，而不只是折扣率</b><p>货主往往只关注折扣百分比，但体积重量除数改变的是每一票货的计费基准。从 139 调整到 166，整体体积重量约可下降 16%。</p></div><div class='note'><b>重新考虑包装形式</b><p>软包装信封和塑料袋的测量方式与硬质纸箱不同，轻量商品往往可以完全不适用体积重量规则。</p></div>
+      <h2>常见错误</h2>
+      <div class='note'><b>测量产品而非箱子</b><p>体积重量以含缓冲材料和外包装的出货纸箱为准。只测量裸产品会使所有估算都偏低。</p></div><div class='note'><b>忽略鼓起部分</b><p>装得过满的纸箱侧面会外凸。承运商测量最宽处，因此设计为 10 英寸但鼓到 10.5 英寸的箱子会按 11 英寸计费。</p></div><div class='note'><b>所有服务套用同一个除数</b><p>同一承运商内部，陆运、快递、国际和邮政服务的除数经常不同。应按服务而非按承运商确认除数。</p></div><div class='note'><b>忘记最低计费重量</b><p>超尺寸和大件包裹常按最低计费重量（通常为 90 磅）收费，与体积计算结果无关。</p></div><div class='note'><b>混淆体积重量与 CBM</b><p>体积重量是把体积换算为快递计费重量；海运和空运则按 CBM，即以立方米计的实际体积报价。两者是不同体系，不可互换。</p></div>
       <h2>常见问题</h2>
       <details open><summary>体积重量怎么计算？</summary><p>长 × 宽 × 高得出体积，再除以承运商体积系数。12 × 10 × 8 in 箱子按系数139：960 ÷ 139 = 6.9 lb 体积重量。</p></details><details><summary>计费重量是什么？</summary><p>实际收费的重量：实际重量和体积重量中较大者，向上取整到磅或千克。箱子相对尺寸偏轻时，通常按体积重量计费。</p></details><details><summary>该用哪个体积系数？</summary><p>取决于承运商和合同。美国国内 UPS·FedEx 常用139(in³/lb)，USPS 超过1立方英尺用166。国际空运通常用5000或6000(cm³/kg)。请以运输合同为准。</p></details><details><summary>箱子要按外径量吗？</summary><p>是的。始终测量打包后纸箱的外径（含鼓起部分），那才是货物在车辆中占用的空间。</p></details><details><summary>这和CBM一样吗？</summary><p>不一样。体积重量用于快递·速运，把体积换算成计费重量；CBM是海运·空运用的原始体积（立方米）。集装箱·拼箱货请用CBM计算器。</p></details>
     </section>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
   </main>
   <footer>
     <a href="/about/">关于</a> · <a href="/privacy/">隐私政策</a> · <a href="/contact/">联系我们</a>

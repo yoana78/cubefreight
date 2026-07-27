@@ -58,9 +58,10 @@
     * { box-sizing:border-box; margin:0; }
     body { font-family:var(--sans); background:var(--bg); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; }
     main { max-width:1080px; width:100%; margin:0 auto; padding:0 20px 56px; flex:1; }
-    .ad { border:1px dashed var(--line); border-radius:12px; background:var(--panel); min-height:90px;
-      display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px;
-      color:var(--ink-faint); letter-spacing:1px; margin:20px 0; }
+    /* Ad slot: no visible chrome. Auto ads inject the unit; an unfilled
+       slot collapses instead of showing a placeholder box. */
+    .ad { margin:20px 0; text-align:center; }
+    .ad:empty { display:none; }
     .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
     .tool-h { font-size:26px; font-weight:700; }
     .tool-sub { color:var(--ink-dim); font-size:14.5px; margin:6px 0 18px; line-height:1.6; }
@@ -120,6 +121,14 @@
     .seo details { border-bottom:1px solid var(--line); padding:11px 2px; }
     .seo summary { font-weight:600; font-size:14.5px; cursor:pointer; }
     .seo details p { margin:9px 0 2px; }
+    .seo ol.steps { margin:10px 0 4px; padding-left:20px; }
+    .seo ol.steps li { margin-bottom:13px; font-size:14.5px; line-height:1.7; }
+    .seo ol.steps li b { display:block; color:var(--ink); margin-bottom:3px; }
+    .seo ol.steps li span { color:var(--ink-dim); }
+    .seo .note { border-left:3px solid var(--acc); background:var(--panel); border-radius:0 8px 8px 0;
+      padding:11px 14px; margin-bottom:10px; }
+    .seo .note b { font-size:14.5px; }
+    .seo .note p { margin:4px 0 0; }
     footer { text-align:center; padding:24px; border-top:1px solid var(--line); color:var(--ink-faint);
       font-size:11.5px; background:rgba(255,255,255,0.8); line-height:1.7; }
     footer a { color:var(--ink-dim); text-decoration:none; margin:0 6px; }
@@ -220,7 +229,7 @@
   </div>
 </header>
   <main>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
     <div class="card" id="inputCard">
       <h1 class="tool-h">CBM Calculator</h1>
       <p class="tool-sub">Convert carton dimensions into cubic metres (CBM) for ocean and air freight, with chargeable weight and container fit.</p>
@@ -271,12 +280,18 @@
     <section class="seo">
       <h2>What is CBM (cubic metre)?</h2>
       <p>CBM is the volume of your cargo in cubic metres, the basis for ocean LCL and air freight pricing. Convert each dimension to metres and multiply: CBM = (L × W × H) in metres. A 40 × 30 × 25 cm carton is 0.40 × 0.30 × 0.25 = 0.03 CBM. Multiply by the carton count for the shipment total. Ocean LCL is charged on a weight-or-measure (W/M) basis — whichever is greater, one tonne or one CBM. Air freight uses a volumetric weight of about 167 kg per CBM.</p>
+      <h2>How to calculate CBM step by step</h2>
+      <ol class="steps"><li><b>Convert every dimension to metres</b><span>CBM is defined in metres, so a carton measured in centimetres must be divided by 100 first. A 40 x 30 x 25 cm carton becomes 0.40 x 0.30 x 0.25 m. Measuring in inches instead? Divide each figure by 39.37.</span></li><li><b>Multiply the three dimensions</b><span>0.40 x 0.30 x 0.25 = 0.03 CBM per carton. This is the volume one carton occupies, and it is always based on the outer dimensions of the packed box, never the inner cavity.</span></li><li><b>Multiply by the carton count</b><span>100 cartons at 0.03 CBM is 3 CBM in total. For mixed shipments, calculate each carton type separately and add the results together - never average dimensions across different box sizes.</span></li><li><b>Compare volume against weight</b><span>Ocean LCL is priced on whichever is greater, the CBM or the metric tonnage. Three CBM weighing 1.2 tonnes bills as 3 revenue tons because the volume figure is larger than the weight figure.</span></li><li><b>Add pallet space if the cargo is palletised</b><span>Once cartons are stacked on a pallet, the chargeable volume becomes the pallet footprint multiplied by the total stacked height, not the sum of the individual cartons. The pallet base itself and any overhang count toward the billed volume.</span></li></ol>
       <h2>Container Capacity Reference</h2>
       <table><thead><tr><th>Container</th><th>Internal CBM</th><th>Usable CBM</th></tr></thead><tbody><tr><td>20ft standard</td><td>33 m³</td><td>~28 m³</td></tr><tr><td>40ft standard</td><td>67 m³</td><td>~58 m³</td></tr><tr><td>40ft high cube</td><td>76 m³</td><td>~68 m³</td></tr><tr><td>Air (per CBM)</td><td>—</td><td>167 kg vol.</td></tr></tbody></table>
+      <h2>Understanding weight or measure (W/M)</h2>
+      <div class='note'><b>One revenue ton is whichever is greater</b><p>Ocean LCL carriers bill in revenue tons: one cubic metre or one metric tonne, whichever produces the larger number. Light bulky cargo bills on volume, while dense cargo such as tiles or machinery bills on weight.</p></div><div class='note'><b>Air freight uses a different ratio</b><p>Air freight converts volume to weight at roughly 167 kg per cubic metre, which is the IATA 6000 cm3/kg volumetric rule expressed per CBM. One CBM of cargo weighing less than 167 kg is billed as 167 kg.</p></div><div class='note'><b>Know when a full container is cheaper</b><p>LCL cost scales with volume, so beyond roughly 13 to 15 CBM a 20 ft full container load is often cheaper than paying per cubic metre once handling and destination charges are included.</p></div><div class='note'><b>Cubic feet still appears on US paperwork</b><p>One cubic metre is 35.31 cubic feet. US domestic documents and some airlines quote CFT, so the same shipment can legitimately appear as 3 CBM on one document and 105.9 CFT on another.</p></div>
+      <h2>Common mistakes</h2>
+      <div class='note'><b>Using inner dimensions</b><p>CBM must be calculated from the outer carton dimensions. Inner dimensions describe the product cavity and understate the space the shipment actually occupies on the vessel.</p></div><div class='note'><b>Mixing units mid-calculation</b><p>Multiplying centimetres by metres produces a number that looks plausible but is wrong by a factor of 100 or more. Convert everything to metres before multiplying.</p></div><div class='note'><b>Forgetting the pallet</b><p>A 1.2 x 1.0 m pallet stacked to 1.5 m is 1.8 CBM of billed space even if the cartons on it total only 1.5 CBM. Remember that stacked height includes the pallet base, typically 0.14 m.</p></div><div class='note'><b>Assuming volume always governs</b><p>Dense cargo bills on weight instead. Always run both numbers: a shipment of 2 CBM weighing 3 tonnes bills as 3 revenue tons, not 2.</p></div><div class='note'><b>Ignoring stacking limits</b><p>Cargo marked non-stackable is charged for the full height it blocks inside the container, which can double the effective CBM even when the cartons themselves are short.</p></div>
       <h2>Frequently Asked Questions</h2>
       <details open><summary>How do I calculate CBM?</summary><p>Convert length, width and height to metres and multiply. A 40 × 30 × 25 cm carton is 0.40 × 0.30 × 0.25 = 0.03 CBM. For 100 cartons that is 3.0 CBM total.</p></details><details><summary>What is chargeable weight for ocean LCL?</summary><p>Ocean LCL uses weight-or-measure (W/M): you are charged for whichever is greater — one revenue tonne (1000 kg) or one cubic metre. Enter the weight per carton and the calculator shows both so you can see which governs.</p></details><details><summary>How is air freight volumetric weight found?</summary><p>Air freight charges the greater of the actual weight and a volumetric weight of about 167 kg per cubic metre (the IATA 1:6000 rule). 3 CBM equals roughly 500 kg of volumetric weight.</p></details><details><summary>How many cartons fit in a container?</summary><p>Divide the usable container volume by your carton CBM: about 28 m³ for a 20ft and 58 m³ for a 40ft in practice. Real loading is a little less because cartons never tessellate perfectly — use the Pallet or Carton calculator for an exact layout.</p></details><details><summary>Should I use inner or outer carton size?</summary><p>Always the outer size. Freight is charged on the space the carton occupies, so board thickness and any bulge count toward the CBM.</p></details>
     </section>
-    <div class="ad">GOOGLE ADSENSE · 728×90 / 970×90</div>
+    <div class="ad"></div>
   </main>
   <footer>
     <a href="/about/">About</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/contact/">Contact</a>
