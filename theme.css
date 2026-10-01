@@ -202,7 +202,7 @@ ins.adsbygoogle, .ad-slot, .adsense-placeholder { background: #0b0b0d; border-ra
   .cf-gnb .cf-nav { flex: 1 1 auto !important; display: flex !important; }
   .cf-gnb .cf-langs { margin-left: auto; }
 
-  /* 1) 여섯 번째 칸: 글자 없이 카톤박스를 들고 달리는 캐릭터만 */
+  /* 1) 여섯 번째 칸: 글자 없이 카톤박스를 들고 달리는 캐릭터만 — 누르면 새 탭으로 yoana.me */
   .card-runner { position: relative; min-height: 200px; display: flex !important; align-items: flex-end; justify-content: center; }
   .card-runner .runner { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
     height: 86%; aspect-ratio: 173 / 300;
