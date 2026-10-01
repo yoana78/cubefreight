@@ -1,0 +1,269 @@
+/* CubeFreight 블랙톤 테마 — yoana.me 톤앤매너 (2026-10-01)
+   빌드(build-cubefreight.py)가 cubefreight/theme.css로 복사하고 모든 페이지 </head> 앞에 연결한다.
+   원칙: 바탕 검정 / 카드 짙은 회색 / 입력칸 한 단계 밝게, 글자는 순백 대신 살짝 낮춘 흰색,
+         선택 · 활성 · 포커스는 흰색, 빨강은 Y♥ANA 하트 · 계산 · PDF 버튼 · 체크 표시만,
+         숫자는 자리가 고정된 고정폭 숫자.
+   화면 전용(@media screen) — 인쇄 · PDF 보고서는 원래의 흰 디자인 그대로. */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@media screen {
+
+:root {
+  --bg: #000000;
+  --panel: #0e0e10;
+  --panel-2: #18181b;
+  --line: #2a2a2f;
+  --line-soft: #141416;
+  --ink: #e8e8ec;
+  --ink-dim: #a6a6ae;
+  --ink-faint: #6e6e76;
+  --ink-white: #f4f4f6;
+  --cyan: #ffffff;               /* 원래 포인트(하늘색) 자리 → 선택 · 활성은 흰색 */
+  --cyan-dim: rgba(255, 255, 255, 0.10);
+  --amber: #f5a524;
+  --amber-dim: rgba(245, 165, 36, 0.12);
+  --danger: #ff6b6b;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: dark;
+}
+
+html, body { background: #000 !important; color: var(--ink); }
+* { scrollbar-color: #2e2e34 #000; }
+
+/* ── 숫자: 자리 고정 (값이 바뀌어도 흔들리지 않고 표의 세로줄이 맞음) */
+input, select, textarea, td, th, output, .mono, [class*="val"], [class*="result"], [class*="stat"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 입력칸: 바탕보다 한 단계 밝게, 테두리 또렷, 포커스는 흰색 */
+input, select, textarea {
+  background-color: var(--panel-2) !important;   /* background-color만: 선택 상자 화살표(배경 이미지)는 유지 */
+  color: var(--ink-white) !important;
+  border-color: #34343a !important;
+}
+input[type="number"], input[type="text"], input:not([type]) { font-family: var(--mono); }
+select { color-scheme: dark; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: #ffffff !important; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14) !important; }
+input::placeholder { color: #5c5c64; }
+option { background: #18181b; color: var(--ink); }
+input[type="range"], input[type="checkbox"], input[type="radio"] { accent-color: #f61a22; }
+
+/* ── 머리말 · 꼬리말 */
+header, nav { background: rgba(0, 0, 0, 0.88) !important; border-color: var(--line) !important; }
+footer { background: #000 !important; border-color: var(--line) !important; }
+footer a:hover, .footer-links a:hover { color: #ffffff !important; }
+
+/* ── 통합 상단 메뉴(cf-gnb) */
+.cf-gnb { background: rgba(0, 0, 0, 0.9) !important; border-bottom-color: var(--line) !important; backdrop-filter: blur(8px); }
+.cf-nav { background: transparent !important; gap: 8px !important; align-items: center; }
+.cf-brand, .cf-word { color: #fff !important; }
+.brand-text h1 { color: #fff; }
+
+/* 로고: CubeFreight의 h 아래 오른쪽 맞춤으로 작은 "by Y♥ANA" (같은 글꼴 · 흰색, 하트만 빨강) */
+.cf-brand { position: relative; align-items: center; }
+.cf-by { position: absolute; right: 0; top: 100%; margin-top: -1px;
+  font-family: 'Outfit', sans-serif; font-size: 9.5px; font-weight: 400; line-height: 1; letter-spacing: 0;
+  color: #fff; white-space: nowrap; }
+.cf-by i { display: inline-block; font-style: normal; color: #f61a22; font-size: 0.85em; margin: 0 -0.08em; vertical-align: 0.05em; }
+
+/* 계산기 탭(카톤 · 팔레트 · LTL): 선 아이콘 + 입체감 있는 둥근 버튼, 선택은 흰 바탕 */
+.cf-tab { display: inline-flex !important; align-items: center; gap: 7px; font-weight: 600 !important; letter-spacing: 0.01em;
+  padding: 7px 15px 7px 12px !important; border-radius: 999px !important; color: #d6d6dc !important;
+  background: linear-gradient(180deg, #1c1c20 0%, #0f0f12 100%) !important; border: 1px solid #2f2f36 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px rgba(0,0,0,0.5) !important;
+  transition: transform .15s, border-color .15s, color .15s, background .15s !important; }
+.cf-tab .cf-dot { display: inline-block !important; width: 16px; height: 16px; border-radius: 0 !important; background: currentColor !important;
+  -webkit-mask: var(--ico) center / contain no-repeat; mask: var(--ico) center / contain no-repeat; }
+.cf-tab[href*="/carton/"] .cf-dot { --ico: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.8%27%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M3%207.5l9-4.5%209%204.5v9l-9%204.5-9-4.5z%27/%3E%3Cpath%20d%3D%27M3%207.5l9%204.5%209-4.5M12%2012v9%27/%3E%3C/svg%3E"); }
+.cf-tab[href*="/pallet/"] .cf-dot { --ico: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.8%27%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M5%208h6v8H5zM13%208h6v8h-6zM8.5%203h7v5h-7zM3%2016h18M3%2020h18M5%2016v4M12%2016v4M19%2016v4%27/%3E%3C/svg%3E"); }
+.cf-tab[href*="/ltl/"] .cf-dot { --ico: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%271.8%27%20stroke-linejoin%3D%27round%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M2%206h12v10H2zM14%209.5h4l3%203.5v3h-7z%27/%3E%3Ccircle%20cx%3D%276.5%27%20cy%3D%2718%27%20r%3D%272%27/%3E%3Ccircle%20cx%3D%2717.5%27%20cy%3D%2718%27%20r%3D%272%27/%3E%3C/svg%3E"); }
+.cf-tab:hover { transform: translateY(-1px); color: #fff !important; border-color: rgba(255,255,255,0.45) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 6px 16px rgba(0,0,0,0.6), 0 0 0 3px rgba(255,255,255,0.05) !important; }
+.cf-tab.active { background: #fff !important; color: #000 !important; border-color: #fff !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.12), 0 6px 18px rgba(255,255,255,0.08) !important; }
+
+/* 언어 선택: 선택하면 흰 바탕 + 검정 글자 */
+.lang-btn, .cf-gnb .lang-btn { background: #141416 !important; border-color: var(--line) !important; color: var(--ink-dim) !important; }
+.lang-btn.active, .cf-gnb .lang-btn.active { background: #ffffff !important; color: #000000 !important; border-color: #ffffff !important; box-shadow: none !important; }
+.lang-btn:hover:not(.active) { border-color: #55555c !important; color: #fff !important; }
+
+/* ── 허브 첫 화면: yoana.me처럼 큰 Anton 제목 + 터미널 한 줄 */
+.hero h1 { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.5px;
+  font-size: clamp(34px, 6vw, 64px); line-height: 1.05; color: #fff; }
+.hero p { color: var(--ink-dim); }
+
+/* ── 카드 · 패널 */
+.card, .seo, .panel, [class*="card"] { background: var(--panel) !important; border-color: var(--line) !important; color: var(--ink); }
+a.card:hover { border-color: rgba(255, 255, 255, 0.55) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55), 0 12px 32px rgba(0, 0, 0, 0.6) !important; }
+.card h2 { color: #fff; }
+.cta { color: #fff !important; }
+.chip, .soon { background: #141416 !important; border-color: var(--line) !important; color: var(--ink-dim) !important; font-family: var(--mono); }
+
+/* 섹션 제목 밑줄은 흰색 */
+.seo h2, .seo-content h2, .form-group-title { border-bottom-color: #ffffff !important; color: #fff; }
+
+/* ── 표 */
+table { color: var(--ink); }
+th { background: #141416 !important; color: var(--ink-dim) !important; border-color: var(--line) !important; }
+td { border-color: var(--line) !important; }
+.seo table.pick td:last-child { background: transparent; }
+
+/* ── 버튼: 계산 · PDF는 빨강 (yoana.me 포인트) */
+.btn-calc { background: linear-gradient(135deg, #d9141b, #ff4a4f) !important; }
+.btn-calc:hover { box-shadow: 0 6px 22px rgba(246, 26, 34, 0.35) !important; }
+.brand-logo { background: linear-gradient(135deg, #ffffff, #5c5c64) !important; }
+
+/* ── 결과 · 3D */
+.kpi-value.large { color: #ffffff !important; }   /* 빨강 · 파랑 숫자는 오류 · 링크처럼 읽혀서 흰색으로 크게 */
+svg#isoSvg { background: radial-gradient(ellipse at 50% 30%, #222227 0%, #0c0c0e 78%) !important; border-color: var(--line) !important; }
+
+/* 팔레트 종류 선택 상자가 좁아져 글자가 안 보이던 문제 */
+.field:has(#palletType) { min-width: 140px; }
+
+/* 광고 자리: 짙은 회색 상자로 감싸 튀지 않게 (클릭 유도 모양은 쓰지 않음) */
+ins.adsbygoogle, .ad-slot, .adsense-placeholder { background: #0b0b0d; border-radius: 10px; }
+
+}
+
+/* ── 계산기별 보정: 원래 포인트 색을 배경으로 쓰던 버튼 (포인트가 흰색이 되면서 흰 바탕 위 흰 글자가 되지 않게) */
+@media screen {
+  .unit-toggle button.active, .btn-show-viz:hover { color: #000 !important; }        /* LTL: 흰 바탕 + 검정 글자 */
+  .btn.primary { background: linear-gradient(135deg, #d9141b, #ff4a4f) !important; border-color: #f61a22 !important; color: #fff !important; } /* LTL 계산 버튼 = 빨강 */
+}
+
+/* ── 허브 첫 화면: 스크롤 없이 한 화면 (데스크톱) — 카드를 촘촘하게, 설명은 접어 두고 ▸ 누르면 펼침 */
+@media screen {
+  .hero { padding: 26px 0 20px !important; }
+  .hero h1 { font-size: clamp(30px, 4.4vw, 52px) !important; }
+  .hero p { margin-top: 8px !important; font-size: 14.5px !important; }
+  .hero + .grid { gap: 14px !important; }
+  .hero + .grid .card { padding: 18px 20px 16px !important; gap: 8px !important; border-top-width: 1px !important; position: relative; overflow: hidden; }
+  .hero + .grid .card-icon svg { width: 64px !important; height: 48px !important; }
+  .hero + .grid .card h2 { font-size: 17px !important; }
+  .hero + .grid .card p { font-size: 13px !important; line-height: 1.55 !important;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 0 0 auto !important; }
+  .hero + .grid .chips { margin-top: auto; }
+  .hero + .grid .chip { font-size: 10px !important; padding: 2px 8px !important; }
+  .hero + .grid .cta { font-size: 13px !important; }
+
+  details.more { margin-top: 22px; }
+  details.more > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+    color: var(--ink-dim); font-size: 13.5px; font-weight: 500; padding: 10px 0; user-select: none; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::before { content: ''; width: 0; height: 0; border-left: 7px solid currentColor;
+    border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: transform .2s; }
+  details.more[open] > summary::before { transform: rotate(90deg); }
+  details.more > summary:hover { color: #fff; }
+  details.more > .seo { margin-top: 10px !important; }
+}
+
+/* ── CubeFreight Pro 카드: 카톤박스를 들고 오른쪽 → 왼쪽으로 제자리 달리기 (8프레임 스프라이트 /run.webp, 173×300 한 칸) */
+@media screen {
+  .card-pro { opacity: 1 !important; }
+  .card-pro .runner {
+    position: absolute; right: 18px; bottom: 6px;
+    height: min(62%, 170px); aspect-ratio: 173 / 300;
+    background: url('/run.webp') 0 0 / 800% 100% no-repeat;
+    animation: cf-run 0.62s steps(8) infinite;
+    pointer-events: none;
+  }
+  .card-pro .runner::after {     /* 발밑 그림자 */
+    content: ''; position: absolute; left: 18%; right: 18%; bottom: 2px; height: 7px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.10), transparent 70%);
+  }
+  @keyframes cf-run { from { background-position-x: 0%; } to { background-position-x: 114.2857%; } }
+  @media (prefers-reduced-motion: reduce) { .card-pro .runner { animation: none; } }
+}
+/* Pro 카드: 설명은 왼쪽 60%, 캐릭터는 오른쪽 (글자와 겹치지 않게) */
+@media screen {
+  .hero + .grid .card-pro p { max-width: 60%; -webkit-line-clamp: 4 !important; }
+  .card-pro .runner { height: min(78%, 180px); right: 14px; bottom: 8px; }
+}
+@media screen and (max-width: 600px) {
+  .card-pro { min-height: 210px; }
+}
+
+/* ── 보정 2: LTL 계산 버튼 · 결과 · 3D, 부피무게 · CBM 포인트색 */
+@media screen {
+  .btn-calc-big { background: linear-gradient(135deg, #d9141b, #ff4a4f) !important; color: #fff !important; }
+  .res-block.main { background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)) !important; border-color: rgba(255,255,255,0.5) !important; }
+  .viz { background: radial-gradient(ellipse at 50% 30%, #222227 0%, #0c0c0e 78%) !important; border-color: var(--line) !important; }
+  /* 부피무게 · CBM: 보라 · 청록 포인트 → 흰색 (강조 칸 · 결과 제목), PDF 버튼은 다른 계산기와 같은 빨강 */
+  :root { --acc: #ffffff; --accd: rgba(255, 255, 255, 0.07); }
+  .btn-pdf { background: linear-gradient(135deg, #d9141b, #ff4a4f) !important; color: #fff !important; }
+}
+
+/* ══ 피드백 4 (2026-10-01) ══════════════════════════════════════ */
+@media screen {
+  /* 4) 상단바: 계산기 페이지도 허브와 똑같이 (계산기 CSS의 header{display:flex; padding…}가 메뉴를 좁게 만들던 것 무력화) */
+  header.cf-gnb { display: block !important; padding: 0 !important; justify-content: initial !important; }
+  .cf-gnb-inner { width: 100%; max-width: 1240px !important; margin: 0 auto !important; padding: 10px 24px !important;
+    display: flex !important; align-items: center !important; gap: 14px !important; flex-wrap: wrap; }
+  .cf-gnb .cf-nav { flex: 1 1 auto !important; display: flex !important; }
+  .cf-gnb .cf-langs { margin-left: auto; }
+
+  /* 1) 여섯 번째 칸: 글자 없이 카톤박스를 들고 달리는 캐릭터만 */
+  .card-runner { position: relative; min-height: 200px; display: flex !important; align-items: flex-end; justify-content: center; }
+  .card-runner .runner { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+    height: 86%; aspect-ratio: 173 / 300;
+    background: url('/run.webp') 0 0 / 800% 100% no-repeat; animation: cf-run 0.62s steps(8) infinite; pointer-events: none; }
+  .card-runner .runner::after { content: ''; position: absolute; left: 14%; right: 14%; bottom: 0; height: 8px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.12), transparent 70%); }
+  @media (prefers-reduced-motion: reduce) { .card-runner .runner { animation: none; } }
+
+  /* 6) 계산기 화면도 허브처럼 넓게 — 스크롤을 최대한 줄임 */
+  .container, .step-wrap { max-width: 1240px !important; }
+  /* 카톤 · 팔레트 입력: 섹션을 카드로 묶어 여러 칸 (theme.js가 .cf-group으로 감쌈) */
+  .cf-wide-form #stepInput .input-card { max-width: none !important; width: 100%; }
+  .cf-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 16px; }
+  .cf-groups-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cf-group { background: #0b0b0d; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; min-width: 0; }
+  .cf-group > .form-group-title { padding: 12px 16px !important; font-size: 12.5px !important; border-bottom-width: 1px !important; }
+  .cf-group > .form-row { padding: 12px 16px !important; gap: 10px 14px !important; }
+  .cf-group .field { min-width: 0; }
+  .cf-wide-form .card-header { padding: 16px 20px !important; }
+  .cf-wide-form .card-footer { padding: 4px 16px 16px !important; }
+  .cf-wide-form .btn-calc { max-width: 520px; margin: 0 auto; display: flex; }
+  .cf-wide-form .hint { font-size: 11.5px !important; }
+  @media (max-width: 1000px) { .cf-groups { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .cf-groups, .cf-groups-4 { grid-template-columns: 1fr; padding: 10px; } }
+
+  /* LTL: 위 소개를 줄이고, 단일 품목 입력 칸들을 두 줄로 */
+  .container > .hero { padding: 18px 0 8px !important; }
+  .container > .hero h2 { font-size: 26px !important; }
+  #paneSingle, #paneBatch, #paneReverse:not(.hidden) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+  #paneSingle.hidden, #paneBatch.hidden { display: none !important; }
+  #paneSingle > .form-group:last-child { grid-column: 1 / -1; }
+
+  /* 부피무게 · CBM: 입력과 결과를 나란히 */
+  .cf-tool main { max-width: 1240px !important; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 18px; align-items: start; }
+  .cf-tool main > .ad, .cf-tool main > details.more, .cf-tool main > section { grid-column: 1 / -1; }
+  .cf-tool main > #inputCard, .cf-tool main > #result { margin: 0 !important; }
+  @media (max-width: 900px) { .cf-tool main { grid-template-columns: 1fr; } }
+}
+@media screen {
+  /* 치수 입력(L × W × H)이 칸 밖으로 넘치지 않게 */
+  .cf-group .dims-inputs { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; width: 100%; }
+  .cf-group .dims-inputs input { width: 100% !important; min-width: 0 !important; }
+  .cf-group .form-row { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cf-group .form-row > .field-wide, .cf-group .form-row > .dims-field { grid-column: 1 / -1; }
+  /* 카톤(섹션 5개): 00 · 01 · 03 · 04는 왼쪽 두 칸, 긴 02(배치)는 오른쪽에 세로로 길게 */
+  @media (min-width: 1001px) {
+    .cf-groups-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "g1 g2 g3" "g4 g5 g3"; }
+    .cf-groups-5 > .cf-group:nth-child(1) { grid-area: g1; }
+    .cf-groups-5 > .cf-group:nth-child(2) { grid-area: g2; }
+    .cf-groups-5 > .cf-group:nth-child(3) { grid-area: g3; }
+    .cf-groups-5 > .cf-group:nth-child(4) { grid-area: g4; }
+    .cf-groups-5 > .cf-group:nth-child(5) { grid-area: g5; }
+  }
+  /* 부피무게 · CBM: 3D 미리보기를 조금 낮게 */
+  .cf-tool .viz svg { max-height: 320px; }
+}
+@media screen { .cf-group .form-row > .field:has(.dims-inputs) { grid-column: 1 / -1; } }
+/* LTL 입력 카드 머리말: 팔레트 · 카톤의 .card-header와 같은 모양 (theme.js가 위쪽 소개를 옮겨 넣음) */
+@media screen {
+  .cf-card-header { background: var(--panel-2); border-bottom: 1px solid var(--line); padding: 20px 24px; text-align: left; }
+  .cf-card-header h2 { font-size: 18px !important; font-weight: 600 !important; color: var(--ink-white) !important; margin: 0 !important; letter-spacing: 0 !important; }
+  .cf-card-header p { font-size: 13px !important; color: var(--ink-dim) !important; margin: 4px 0 0 !important; max-width: none !important; line-height: 1.55 !important; text-align: left !important; }
+  .cf-card-header .badge-2025 { display: inline-block; margin-top: 10px !important; font-size: 11px !important; padding: 3px 10px !important; }
+}

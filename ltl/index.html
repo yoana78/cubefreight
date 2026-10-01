@@ -12,11 +12,11 @@
   <!-- meta keywords intentionally omitted: Google has ignored it for ranking
        since 2009, so it only leaks keyword strategy to competitors. -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <link rel="canonical" href="https://cubefreight.pages.dev/ltl/">
-  <link rel="alternate" hreflang="en" href="https://cubefreight.pages.dev/ltl/">
-  <link rel="alternate" hreflang="ko" href="https://cubefreight.pages.dev/ltl/ko/">
-  <link rel="alternate" hreflang="es" href="https://cubefreight.pages.dev/ltl/es/">
-  <link rel="alternate" hreflang="x-default" href="https://cubefreight.pages.dev/ltl/">
+  <link rel="canonical" href="https://freight.yoana.me/ltl/">
+  <link rel="alternate" hreflang="en" href="https://freight.yoana.me/ltl/">
+  <link rel="alternate" hreflang="ko" href="https://freight.yoana.me/ltl/ko/">
+  <link rel="alternate" hreflang="es" href="https://freight.yoana.me/ltl/es/">
+  <link rel="alternate" hreflang="x-default" href="https://freight.yoana.me/ltl/">
   <meta name="author" content="Freight Class Calculator">
   <meta name="theme-color" content="#0284C7">
 
@@ -25,11 +25,11 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Freight Class Calculator">
-  <meta property="og:url" content="https://cubefreight.pages.dev/ltl/">
+  <meta property="og:url" content="https://freight.yoana.me/ltl/">
   <meta property="og:title" id="ogTitle" content="Freight Class Calculator — NMFC Density Class (2025 Updated) with Truck Loading 3D">
   <meta property="og:description" id="ogDesc" content="Free NMFC freight class calculator: enter dimensions and weight for instant density (PCF) and class, updated for the 2025 13-sub scale. Plus 3D truck view.">
   <meta property="og:locale" id="ogLocale" content="en_US">
-  <meta property="og:image" content="https://cubefreight.pages.dev/ltl/og-image.png">
+  <meta property="og:image" content="https://freight.yoana.me/ltl/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Freight Class Calculator - NMFC density to freight class, updated for the July 2025 NMFC changes">
@@ -38,7 +38,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="twTitle" content="Freight Class Calculator — NMFC Density Class (2025 Updated) with Truck Loading 3D">
   <meta name="twitter:description" id="twDesc" content="Free NMFC freight class calculator: enter dimensions and weight for instant density (PCF) and class, updated for the 2025 13-sub scale. Plus 3D truck view.">
-  <meta name="twitter:image" content="https://cubefreight.pages.dev/ltl/og-image.png">
+  <meta name="twitter:image" content="https://freight.yoana.me/ltl/og-image.png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -525,6 +525,8 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/theme.css">
+  <script src="/theme.js" defer></script>
 </head>
 <body>
 
@@ -532,10 +534,10 @@
   <header class="cf-gnb">
   <div class="cf-gnb-inner">
     <a class="cf-brand" href="/"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<polygon points="32,4 58,19 32,34 6,19" fill="#38BDF8"/>
-<polygon points="6,19 32,34 32,62 6,47" fill="#0284C7"/>
-<polygon points="32,34 58,19 58,47 32,62" fill="#D97706"/>
-</svg><span class="cf-word">Cube<b>Freight</b></span></a>
+<polygon points="32,4 58,19 32,34 6,19" fill="#FFFFFF"/>
+<polygon points="6,19 32,34 32,62 6,47" fill="#B9B9C0"/>
+<polygon points="32,34 58,19 58,47 32,62" fill="#5C5C64"/>
+</svg><span class="cf-word">Cube<b>Freight</b></span><span class="cf-by">by Y<i>♥</i>ANA</span></a>
     <nav class="cf-nav"><a href="/carton/" class="cf-tab"><span class="cf-dot" style="background:#D97706"></span>Carton</a><a href="/pallet/" class="cf-tab"><span class="cf-dot" style="background:#0284C7"></span>Pallet</a><a href="/ltl/" class="cf-tab active" style="--cf-accent:#059669"><span class="cf-dot" style="background:#059669"></span>LTL Class</a></nav>
     <div class="lang-selector cf-langs"><a class="lang-btn active" href="/ltl/" data-lang="en" hreflang="en">🇺🇸 en</a><a class="lang-btn" href="/ltl/ko/" data-lang="ko" hreflang="ko">🇰🇷 ko</a><a class="lang-btn" href="/ltl/es/" data-lang="es" hreflang="es">🇪🇸 es</a></div>
   </div>
@@ -894,8 +896,8 @@
       <div class="card-head"><h3 id="txtEmbedTitle">Embed this calculator on your site — free</h3></div>
       <div class="card-body">
         <p style="font-size: 13px; color: var(--ink-dim);" id="txtEmbedHelp">Copy the snippet below into your logistics blog or forwarder site. The widget stays free; the credit link must remain visible.</p>
-        <div class="embed-box" id="embedCode">&lt;iframe src="https://cubefreight.pages.dev/ltl/?embed=1" width="100%" height="720" style="border:1px solid #E2E8F0;border-radius:12px;" title="Freight Class Calculator"&gt;&lt;/iframe&gt;
-&lt;p style="font-size:12px"&gt;Powered by &lt;a href="https://cubefreight.pages.dev/ltl/"&gt;Freight Class Calculator&lt;/a&gt;&lt;/p&gt;</div>
+        <div class="embed-box" id="embedCode">&lt;iframe src="https://freight.yoana.me/ltl/?embed=1" width="100%" height="720" style="border:1px solid #E2E8F0;border-radius:12px;" title="Freight Class Calculator"&gt;&lt;/iframe&gt;
+&lt;p style="font-size:12px"&gt;Powered by &lt;a href="https://freight.yoana.me/ltl/"&gt;Freight Class Calculator&lt;/a&gt;&lt;/p&gt;</div>
         <div class="action-row" style="max-width: 240px;">
           <button class="btn" onclick="copyEmbed(this)" id="btnCopyEmbed">📋 Copy embed code</button>
         </div>
@@ -979,14 +981,14 @@
 
   </div>
 
-  <div class="embed-credit"><a href="https://cubefreight.pages.dev/ltl/" target="_blank" rel="noopener" id="txtEmbedCredit">Powered by Freight Class Calculator</a></div>
+  <div class="embed-credit"><a href="https://freight.yoana.me/ltl/" target="_blank" rel="noopener" id="txtEmbedCredit">Powered by Freight Class Calculator</a></div>
 
   <!-- FOOTER -->
   <footer class="bottom-info">
     <p class="footer-links">
       <a href="/about/" id="lnkAbout">About</a> · <a href="/privacy/" id="lnkPrivacy">Privacy Policy</a> · <a href="/contact/" id="lnkContact">Contact</a>
     </p>
-    <p>© 2026 Freight Class Calculator. All rights reserved.</p>
+    <p>© 2026 YOANA. All rights reserved.</p>
     <p style="margin-top: 6px; opacity: 0.7;" id="txtFooterDesc">Free NMFC freight class estimator with density calculation, reverse lookup, batch mode and truck loading visualization. Not affiliated with NMFTA.</p>
   </footer>
 
@@ -1004,9 +1006,9 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "@id": "https://cubefreight.pages.dev/ltl/#app",
+      "@id": "https://freight.yoana.me/ltl/#app",
       "name": "Freight Class Calculator",
-      "url": "https://cubefreight.pages.dev/ltl/",
+      "url": "https://freight.yoana.me/ltl/",
       "description": "Free NMFC freight class calculator: enter dimensions and weight for instant density (PCF) and class, updated for the 2025 13-sub scale. Plus 3D truck view.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "All",
@@ -1021,7 +1023,7 @@
     },
     {
       "@type": "FAQPage",
-      "@id": "https://cubefreight.pages.dev/ltl/#faq",
+      "@id": "https://freight.yoana.me/ltl/#faq",
       "mainEntity": [
         {
           "@type": "Question",
