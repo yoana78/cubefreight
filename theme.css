@@ -267,3 +267,26 @@ ins.adsbygoogle, .ad-slot, .adsense-placeholder { background: #0b0b0d; border-ra
   .cf-card-header p { font-size: 13px !important; color: var(--ink-dim) !important; margin: 4px 0 0 !important; max-width: none !important; line-height: 1.55 !important; text-align: left !important; }
   .cf-card-header .badge-2025 { display: inline-block; margin-top: 10px !important; font-size: 11px !important; padding: 3px 10px !important; }
 }
+
+/* 바로 접속했을 때 인트로: 검은 바탕 가운데 큰 큐브가 대각선으로 돌고 아래 CubeFreight (yoana.me/go/freight와 같은 모양)
+   html.cf-intro는 각 페이지 <head> 맨 앞 스크립트가 붙임 → 그동안 본문은 숨김, cubefreight-theme.js가 1.7초 뒤 걷어냄 */
+@media screen {
+  html.cf-intro, html.cf-intro body { background: #000 !important; }
+  html.cf-intro body > :not(#cf-intro) { visibility: hidden !important; }
+  #cf-intro { position: fixed; inset: 0; z-index: 2147483000; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(28px, 5vh, 56px); transition: opacity 0.45s ease; }
+  #cf-intro.out { opacity: 0; pointer-events: none; }
+  #cf-intro .cfi-wrap { width: min(30vmin, 240px); height: min(30vmin, 240px); perspective: 900px; margin-bottom: min(9vmin, 70px); transform: scale(0.6); animation: cfi-pop 0.7s cubic-bezier(.2, .9, .3, 1.2) 0.1s forwards; }
+  #cf-intro .cfi-cube { --s: min(30vmin, 240px); position: relative; display: block; width: var(--s); height: var(--s); transform-style: preserve-3d; animation: cfi-spin 2.6s linear infinite; }
+  #cf-intro .cfi-cube i { position: absolute; inset: 0; border: 1px solid rgba(0, 0, 0, 0.35); }
+  #cf-intro .cfi-cube i:nth-child(1) { background: #b9b9c0; transform: translateZ(calc(var(--s) / 2)); }
+  #cf-intro .cfi-cube i:nth-child(2) { background: #3a3a40; transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+  #cf-intro .cfi-cube i:nth-child(3) { background: #5c5c64; transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+  #cf-intro .cfi-cube i:nth-child(4) { background: #8a8a92; transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+  #cf-intro .cfi-cube i:nth-child(5) { background: #ffffff; transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+  #cf-intro .cfi-cube i:nth-child(6) { background: #26262b; transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+  #cf-intro .cfi-title { font-family: 'Anton', sans-serif; font-size: clamp(3rem, 10vw, 8.5rem); line-height: 1; color: #fff; letter-spacing: 0.01em; opacity: 0; transform: translateY(20px); animation: cfi-rise 0.5s ease 0.35s forwards; }
+  @keyframes cfi-spin { from { transform: rotateX(-28deg) rotateY(38deg) rotate3d(1, 1, 0, 0deg); } to { transform: rotateX(-28deg) rotateY(38deg) rotate3d(1, 1, 0, 360deg); } }
+  @keyframes cfi-pop { to { transform: scale(1); } }
+  @keyframes cfi-rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { #cf-intro .cfi-wrap, #cf-intro .cfi-cube, #cf-intro .cfi-title { animation: none; transform: none; opacity: 1; } }
+}

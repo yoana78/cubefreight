@@ -64,7 +64,30 @@
     hero.style.display = 'none';
   }
 
+  // 바로 접속했을 때 큐브 인트로 (html.cf-intro는 <head> 맨 앞 스크립트가 붙임). 1.7초 뒤 걷어내고, 이 탭에선 다시 안 띄움
+  function intro() {
+    var html = document.documentElement;
+    if (!html.classList.contains('cf-intro') || document.getElementById('cf-intro')) return;
+    try { sessionStorage.setItem('cf-intro', '1'); } catch (e) {}
+    var font = document.createElement('link');
+    font.rel = 'stylesheet';
+    font.href = 'https://fonts.googleapis.com/css2?family=Anton&display=swap';
+    document.head.appendChild(font);
+    var box = document.createElement('div');
+    box.id = 'cf-intro';
+    box.setAttribute('aria-hidden', 'true');
+    box.innerHTML = '<span class="cfi-wrap"><span class="cfi-cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span><span class="cfi-title">CubeFreight</span>';
+    document.body.appendChild(box);
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function () {
+      html.classList.remove('cf-intro');
+      box.classList.add('out');
+      setTimeout(function () { box.remove(); }, 500);
+    }, reduce ? 300 : 1700);
+  }
+
   function run() {
+    intro();
     ltlHeader();
     groupForm();
     fold(document.getElementById('seoContent'), MORE[lang] || MORE.en);           // 카톤 · 팔레트 · LTL
