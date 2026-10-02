@@ -1,0 +1,14 @@
+# CubeFreight 보안 헤더 (빌드가 cubefreight/_headers로 복사, Cloudflare Pages가 적용)
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Content-Security-Policy: upgrade-insecure-requests; object-src 'none'; base-uri 'self'
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+# 이름에 해시가 없는 파일이라 하루만 저장, 큰 그림은 일주일
+/run.webp
+  Cache-Control: public, max-age=604800
+/404-lost.webp
+  Cache-Control: public, max-age=604800

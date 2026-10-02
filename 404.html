@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>404 · CubeFreight</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&display=swap" />
+<!--
+  CubeFreight 없는 주소 (Cloudflare Pages가 루트의 404.html을 404 상태로 보여 줌) — yoana.me 404와 같은 모양.
+  빌드(build-cubefreight.py apply_theme)가 cubefreight-404.html → 404.html, cubefreight-404.js → 404.js,
+  cubefreight-404-lost.webp → 404-lost.webp 로 복사. 아무 키나 누르거나 화면을 누르면 freight.yoana.me 첫 화면으로.
+-->
+<style>
+  :root { --muted: #8b939c; --accent: #ff2a2a; --link: #60a5fa; --path: #c084fc; --mono: 'JetBrains Mono', ui-monospace, monospace; }
+  html, body { margin: 0; height: 100%; background: #000; color: #f4f4f5; }
+  body { display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; font-family: var(--mono); cursor: pointer; }
+  .wrap { display: flex; align-items: center; gap: clamp(16px, 5vw, 72px); max-width: 1100px; width: 100%; }
+  .lost { height: min(70vh, 560px); width: auto; flex: none; animation: sway 3.2s ease-in-out infinite; transform-origin: 50% 100%; }
+  @keyframes sway { 50% { transform: rotate(-2deg); } }
+  .term { flex: 1; min-width: 0; border: 1px solid #222; border-radius: 10px; overflow: hidden; background: #050505; }
+  .bar { display: flex; align-items: center; gap: 7px; padding: 9px 12px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; font-size: 12px; color: var(--muted); }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; }
+  .bar i:nth-child(1) { background: #ff5f57; } .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .bar span { margin-left: 8px; }
+  .body { padding: 18px 20px 22px; font-size: clamp(13px, 1.25vw, 16px); line-height: 1.7; white-space: pre-wrap; word-break: break-all; }
+  .p { color: var(--path); } .s { color: var(--accent); } .err { color: var(--accent); } .dim { color: var(--muted); }
+  .big { font-family: 'Anton', sans-serif; font-size: clamp(56px, 9vw, 120px); line-height: 1; letter-spacing: 0.01em; color: #fff; margin: 0 0 6px; }
+  a { color: var(--link); }
+  .cursor { display: inline-block; width: 0.6em; height: 1.1em; background: #e5e7eb; vertical-align: -0.2em; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (max-width: 720px) {
+    .wrap { flex-direction: column; gap: 8px; }
+    .lost { height: 34vh; }
+    .term { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .lost, .cursor { animation: none; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <img class="lost" src="/404-lost.webp" alt="YOANA character scratching head, lost" width="349" height="798" />
+  <section class="term" aria-label="terminal">
+    <div class="bar"><i></i><i></i><i></i><span>zsh — ~/freight</span></div>
+    <div class="body"><p class="big">404</p><span class="p">~/freight</span> <span class="s">❯</span> <span id="cmd"></span>
+<span class="err">zsh: command not found: <span id="path"></span></span>
+<span class="dim" id="msg">Nothing here… I got lost too 🤔</span>
+
+<span class="p">~/freight</span> <span class="s">❯</span> <a href="/">cd ~</a> <span class="dim" id="hint">← press any key to go home</span> <span class="cursor"></span></div>
+  </section>
+</main>
+<script src="/404.js"></script>
+</body>
+</html>
